@@ -5,6 +5,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import com.lern.Event.ItemFrameHide;
 import com.lern.Event.OnPlayerJoin;
+import com.lern.Items.ModeChange;
 import com.lern.more.Coordinate;
 
 import net.md_5.bungee.api.ChatColor;
@@ -19,6 +20,9 @@ public class Main extends JavaPlugin{
 		getServer().getPluginManager().registerEvents(new ItemFrameHide(), this);
 		getServer().getPluginManager().registerEvents(new OnPlayerJoin(), this);
 		
+		
+		new ModeChange();
+		new ModeChange();
 		new Coordinate().coordiante(this);
 	}
 }
