@@ -1,0 +1,6 @@
+name: LernSpigot
+author: TantaiHaha
+api-version: 1.18
+version: 1.0
+main: com.lern.Main
+description: Made For Lern Spigot Plugin
