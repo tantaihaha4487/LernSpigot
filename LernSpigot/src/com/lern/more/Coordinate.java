@@ -10,7 +10,7 @@ import com.lern.Main;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 
-public class Coordinate implements Runnable{
+public class Coordinate{
 	private Main Plugin;
     public static String getCardinalDirection(final Player player) {
         double rotation = (player.getLocation().getYaw() - 180.0f) % 360.0f;
@@ -49,31 +49,29 @@ public class Coordinate implements Runnable{
     public void coordiante(Main Plugin) {
     	this.Plugin = Plugin;
     	BukkitScheduler scheduler = Plugin.getServer().getScheduler();
-    	
-    }
-	@Override
-	public void run() {
-		Player[] players = Plugin.getServer().getOnlinePlayers().toArray(new Player[0]);
-		for(Player p : players) {
-	        for (int length = (array = players).length, i = 0; i < length; ++i) {
-	        	 final int x = p.getLocation().getBlockX();
-	              final int y = p.getLocation().getBlockY();
-	              final int z = p.getLocation().getBlockZ();
-	              String di = "" + ChatColor.DARK_PURPLE + ChatColor.BOLD + "[" +
-	              ChatColor.AQUA + ChatColor.BOLD + getCardinalDirection(p)+
-	            		   ChatColor.DARK_PURPLE + ChatColor.BOLD + "] ";
-	              String posX = "" + ChatColor.BOLD + ChatColor.GOLD + "X: " + ChatColor.BOLD + x + " ";
-	              String posY = "" + ChatColor.BOLD + ChatColor.GOLD + "Y: " + ChatColor.BOLD + y + " ";
-	              String posZ = "" + ChatColor.BOLD + ChatColor.GOLD + "Z: " + ChatColor.BOLD + z + " ";
-	              
-	              if (p.getInventory().getItemInMainHand().getType().equals(Material.COMPASS) || 
-	            		  p.getInventory().getItemInOffHand().getType().equals(Material.COMPASS)) {
-	            	  p.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(di + posX + posY + posZ));
-	            	  
-	              }
+    	scheduler.scheduleSyncRepeatingTask(Plugin, new Runnable() {
+			
+			@Override
+			public void run() {
+				 Player[] players = Plugin.getServer().getOnlinePlayers().toArray(new Player[0]);
+	                for (Player p : players) {	
+	                	int x = p.getLocation().getBlockX();
+	  	              	int y = p.getLocation().getBlockY();
+	  	              	int z = p.getLocation().getBlockZ();
+	  	              	String di = "" + ChatColor.DARK_PURPLE + ChatColor.BOLD + "[" +
+	  	              			ChatColor.AQUA + ChatColor.BOLD + getCardinalDirection(p)+
+	  	            		   ChatColor.DARK_PURPLE + ChatColor.BOLD + "] ";
+	  	              	String posX = "" + ChatColor.BOLD + ChatColor.GOLD + "X: " + ChatColor.BOLD + x + " ";
+	  	              	String posY = "" + ChatColor.BOLD + ChatColor.GOLD + "Y: " + ChatColor.BOLD + y + " ";
+	  	              	String posZ = "" + ChatColor.BOLD + ChatColor.GOLD + "Z: " + ChatColor.BOLD + z + " ";
+	  	              
+	  	              	if (p.getInventory().getItemInMainHand().getType().equals(Material.COMPASS) || 
+	  	            		  p.getInventory().getItemInOffHand().getType().equals(Material.COMPASS)) {
+	  	            	  p.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(di + posX + posY + posZ));
+	  	            	  
+	  	              }
+	                }
 			}
-	        	
-		}
-	}
-
+		}, 0, 5L);
+    }
 }
