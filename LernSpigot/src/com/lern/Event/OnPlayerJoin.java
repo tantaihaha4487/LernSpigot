@@ -16,7 +16,7 @@ public class OnPlayerJoin implements Listener{
 	public void OnPlayerJoin(PlayerJoinEvent e) {
 		Player p = e.getPlayer();
 		String msg = "" + ChatColor.LIGHT_PURPLE + ChatColor.BOLD + "Welcome " + ChatColor.AQUA + 
-				p.getName() + ChatColor.LIGHT_PURPLE + ChatColor.BOLD + "to TantaiHaha Server"; 
+				p.getName() + ChatColor.LIGHT_PURPLE + ChatColor.BOLD + " to TantaiHaha Server"; 
 		p.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(msg));
 		p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 2, 2);
 		
