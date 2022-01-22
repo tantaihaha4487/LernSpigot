@@ -20,6 +20,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 public class ModeChange implements CommandExecutor, Listener{
+	//Event
 	  @EventHandler
 	    public void onRightClick (PlayerInteractEvent event) {
 	        Player p = event.getPlayer();
@@ -37,7 +38,7 @@ public class ModeChange implements CommandExecutor, Listener{
 	            }
 	        }
 	    }
-	
+	//item
 	private static ItemStack createmodewand() {
 	     ItemStack item = new ItemStack(Material.STICK);
          ItemMeta meta = item.getItemMeta();
@@ -60,6 +61,7 @@ public class ModeChange implements CommandExecutor, Listener{
 		return modewand;
 		
 	}
+	//command
 	@Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if(!(sender instanceof Player)) {
