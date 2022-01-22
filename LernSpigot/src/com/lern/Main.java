@@ -14,15 +14,13 @@ public class Main extends JavaPlugin{
 	@Override
 	public void onEnable() {
 		getServer().getLogger().info(ChatColor.GREEN + "===============[Plugin]===============");
-		getServer().getLogger().info(ChatColor.GREEN + "- Lern Plugin Id Enable!");
+		getServer().getLogger().info(ChatColor.GREEN + "- Lern Plugin Is Enable!");
 		getServer().getLogger().info(ChatColor.GREEN + "- Version: " + Bukkit.getVersion());
 		getServer().getLogger().info(ChatColor.GREEN + "======================================");
 		getServer().getPluginManager().registerEvents(new ItemFrameHide(), this);
 		getServer().getPluginManager().registerEvents(new OnPlayerJoin(), this);
 		
-		
-		new ModeChange();
-		new ModeChange();
+		getCommand("wand").setExecutor(new ModeChange());
 		new Coordinate().coordiante(this);
 	}
 }

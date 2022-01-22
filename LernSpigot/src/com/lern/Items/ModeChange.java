@@ -17,41 +17,36 @@ import org.bukkit.inventory.meta.ItemMeta;
 import com.lern.Main;
 
 public class ModeChange implements CommandExecutor{
-
-	private void ModeChange(Main plugin) {
-		plugin.getCommand("wand").setExecutor(plugin);
-		
-	}
 	
 	@Override
-	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-		if(!(sender instanceof Player)) {
-			sender.sendMessage(ChatColor.RED  + "You aren't Player");
-		}
-		if(cmd.getName().equalsIgnoreCase("wand")) {
-			Player p = (Player) sender;
-			ItemStack item = new ItemStack(Material.STICK);
-			ItemMeta meta = item.getItemMeta();
-			
-			meta.setDisplayName("§5§lChage Mode Stick");
-			List<String> lore = new ArrayList<>();
-			lore.add("§b§lRight Cick For Change Game Mode");
-			lore.add("§b§lCreative => Survival");
-			lore.add("§b§l Or");
-			lore.add("§b§lSurvival => Creative");
-			
-			meta.setLore(lore);
-			meta.addEnchant(Enchantment.FIRE_ASPECT, 1, false);
-			meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-			
-			item.setItemMeta(meta);
-			
-			ItemMeta modewand = (ItemMeta) item;
-			p.getInventory().addItem(item);
-			
-		}
-		return false;
-	}
-	
+    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+        if(!(sender instanceof Player)) {
+            sender.sendMessage(ChatColor.RED  + "You aren't Player");
+        }
+        if(label.equalsIgnoreCase("wand")) {
+            Player p = (Player) sender;
+            ItemStack item = new ItemStack(Material.STICK);
+            ItemMeta meta = item.getItemMeta();
+    
+            meta.setDisplayName("§5Chage Mode Stick");
+            List<String> lore = new ArrayList<>();
+            lore.add("§bRight Cick For Change Game Mode");
+            lore.add("§bCreative => Survival");
+            lore.add("§b Or");
+            lore.add("§bSurvival => Creative");
+            
+            meta.setLore(lore);
+            meta.addEnchant(Enchantment.FIRE_ASPECT, 1, false);
+            meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+            
+            item.setItemMeta(meta);
+            
+            ItemStack modewand = (ItemStack) item;
+            p.getInventory().addItem(modewand);
+            
+            return true;       
+        }
+        return false;
+    }
 
 }
