@@ -19,6 +19,7 @@ public class Main extends JavaPlugin{
 		getServer().getLogger().info(ChatColor.GREEN + "======================================");
 		getServer().getPluginManager().registerEvents(new ItemFrameHide(), this);
 		getServer().getPluginManager().registerEvents(new OnPlayerJoin(), this);
+		getServer().getPluginManager().registerEvents(new ModeChange(), this);
 		
 		getCommand("wand").setExecutor(new ModeChange());
 		new Coordinate().coordiante(this);

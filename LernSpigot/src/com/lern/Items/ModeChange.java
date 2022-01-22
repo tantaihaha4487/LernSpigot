@@ -4,20 +4,39 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.bukkit.ChatColor;
+import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import com.lern.Main;
-
 public class ModeChange implements CommandExecutor, Listener{
+	  @EventHandler
+	    public void onRightClick (PlayerInteractEvent event) {
+	        Player p = event.getPlayer();
+	        if (event.getAction() == Action.RIGHT_CLICK_AIR) {
+	            if (event.getItem().getType() == Material.STICK) {
+	            	if(p.getGameMode() == GameMode.CREATIVE) {
+	            		p.setGameMode(GameMode.SURVIVAL);
+	            		p.sendMessage(ChatColor.GREEN + "Change to Survival");
+	            	}
+	            		else {
+							p.setGameMode(GameMode.CREATIVE);
+							p.sendMessage(ChatColor.GREEN + "Change to Creative");
+						}
+	                
+	            }
+	        }
+	    }
 	
 	private static ItemStack createmodewand() {
 	     ItemStack item = new ItemStack(Material.STICK);
@@ -41,7 +60,6 @@ public class ModeChange implements CommandExecutor, Listener{
 		return modewand;
 		
 	}
-	 
 	@Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if(!(sender instanceof Player)) {
