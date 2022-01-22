@@ -19,12 +19,25 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-public class ModeChange implements CommandExecutor, Listener{
+public class ModeChange implements Listener, CommandExecutor{
+	//command
+		public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+		        if(!(sender instanceof Player)) {
+		            sender.sendMessage(ChatColor.RED  + "You aren't Player");
+		        }
+		        if(label.equalsIgnoreCase("modewand")) {
+		            Player p = (Player) sender;
+		            p.getInventory().addItem(ModeChange.createmodewand());
+		            return true;       
+		        }
+		        return false;
+		    }
+
 	//Event
 	  @EventHandler
 	    public void onRightClick (PlayerInteractEvent event) {
 	        Player p = event.getPlayer();
-	        if (event.getAction() == Action.RIGHT_CLICK_AIR) {
+	        if (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
 	            if (event.getItem().getItemMeta().getDisplayName().equals("§5Chage Mode Stick")) {
 	            	if(p.getGameMode() == GameMode.CREATIVE) {
 	            		p.setGameMode(GameMode.SURVIVAL);
@@ -34,12 +47,11 @@ public class ModeChange implements CommandExecutor, Listener{
 							p.setGameMode(GameMode.CREATIVE);
 							p.sendMessage(ChatColor.GREEN + "Change to Creative");
 						}
-
 	            }
 	        }
 	    }
 	//item
-	private static ItemStack createmodewand() {
+	public static ItemStack createmodewand() {
 	     ItemStack item = new ItemStack(Material.STICK);
          ItemMeta meta = item.getItemMeta();
  
@@ -59,22 +71,5 @@ public class ModeChange implements CommandExecutor, Listener{
          ItemStack modewand = (ItemStack) item;
 		
 		return modewand;
-		
 	}
-	//command
-	@Override
-    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        if(!(sender instanceof Player)) {
-            sender.sendMessage(ChatColor.RED  + "You aren't Player");
-        }
-        if(label.equalsIgnoreCase("wand")) {
-            Player p = (Player) sender;
-       
-            p.getInventory().addItem(createmodewand());
-            
-            return true;       
-        }
-        return false;
-    }
-
 }

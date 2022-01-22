@@ -1,11 +1,14 @@
 name: LernSpigot
 author: TantaiHaha
 api-version: 1.18
-version: 1.0
+version: 1.0.1
 main: com.lern.Main
 description: Made For Lern Spigot Plugin
 
 commands:
-   wand:
+   modewand:
       dsecription: give Mode Wand
-      usage: /wand
+      usage: /modewand
+   wc:
+      description : World Config GUI
+      usage: /wc
