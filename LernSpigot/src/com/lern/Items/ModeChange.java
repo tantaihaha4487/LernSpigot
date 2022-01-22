@@ -24,7 +24,7 @@ public class ModeChange implements CommandExecutor, Listener{
 	    public void onRightClick (PlayerInteractEvent event) {
 	        Player p = event.getPlayer();
 	        if (event.getAction() == Action.RIGHT_CLICK_AIR) {
-	            if (event.getItem().getItemMeta().getDisplayName().contains("§5Chage Mode Stick")) {
+	            if (event.getItem().getItemMeta().getDisplayName().equals("§5Chage Mode Stick")) {
 	            	if(p.getGameMode() == GameMode.CREATIVE) {
 	            		p.setGameMode(GameMode.SURVIVAL);
 	            		p.sendMessage(ChatColor.GREEN + "Change to Survival");
