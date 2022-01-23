@@ -1,5 +1,8 @@
 package com.lern.gui;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -47,6 +50,18 @@ public class WorldConfig implements CommandExecutor, Listener{
 	//command
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String ladel, String[] args) {
+		if(args[0].equalsIgnoreCase("wand")) {
+			ItemStack stick = new ItemStack(Material.STICK);
+			ItemMeta stickmeta = stick.getItemMeta();
+			stickmeta.setDisplayName(ChatColor.AQUA + "World Config Wand");
+			List<String> lore = new ArrayList<>();
+			lore.add(ChatColor.LIGHT_PURPLE + "Right Cick For Open World Config GUI");
+			stickmeta.setLore(lore);
+			stick.setItemMeta(stickmeta);
+			
+			Player p = (Player) sender;
+			p.getInventory().addItem(stick);
+		}
 		if(cmd.getName().equalsIgnoreCase("wc")) {
 			Player p = (Player) sender;
 			p.openInventory(worldconfig());
