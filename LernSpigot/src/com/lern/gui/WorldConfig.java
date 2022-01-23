@@ -6,6 +6,7 @@ import java.util.List;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -28,17 +29,30 @@ public class WorldConfig implements CommandExecutor, Listener{
 		Player p = e.getPlayer();
         if(e.getItem() == null) return;
         if (e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK) {
-            if (e.getItem().getItemMeta().getDisplayName().equals(ChatColor.AQUA + "World Config Wand")) {
-            	p.openInventory(worldconfig());
-            	}
             }
+        if (e.getItem().getItemMeta().getDisplayName().equals(ChatColor.AQUA + "World Config Wand")) {
+        	p.openInventory(worldconfig());
+        	}
 	}
 	
 	@EventHandler
 	public void OncickInv(InventoryClickEvent e) {
 		Player p = (Player) e.getWhoClicked();
-		if(e.getView().getTitle().equals("World Config")) {
+		String msg =  ChatColor.YELLOW + "[" + ChatColor.RED + "!" + ChatColor.YELLOW + "] ";
+		if(e.getView().getTitle().equals("World Config") || e.getView().getTitle().equals( ChatColor.YELLOW + "Time")) {
 			e.setCancelled(true);
+			switch(e.getCurrentItem().getType()) {
+				case CLOCK:
+					p.openInventory(timeinv());
+					break;
+				case YELLOW_STAINED_GLASS_PANE:
+					p.getLocation().getWorld().setTime(1000);
+					p.closeInventory();
+					p.sendMessage(msg + ChatColor.GREEN + "time set day");
+					p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 2, 2);
+					break;
+			}
+				
 		}
 	}
 	
@@ -50,10 +64,21 @@ public class WorldConfig implements CommandExecutor, Listener{
 		ItemMeta clocksmeta = clock.getItemMeta();
 		clocksmeta.setDisplayName(ChatColor.GREEN + "Time");
 		clock.setItemMeta(clocksmeta);
-		
 		inv.setItem(4, clock);
-		
 		return inv;
+	}
+	private static Inventory timeinv() {
+		Inventory time = Bukkit.createInventory(null, 9, ChatColor.YELLOW + "Time");
+		ItemStack dayitem = new ItemStack(Material.YELLOW_STAINED_GLASS_PANE);
+		ItemMeta daymeata = dayitem.getItemMeta();
+		daymeata.setDisplayName(ChatColor.YELLOW + "Day");
+		List<String> lore = new ArrayList<>();
+		lore.add(ChatColor.LIGHT_PURPLE + "Set time Day (1000)");
+		daymeata.setLore(lore);
+		daymeata.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+		dayitem.setItemMeta(daymeata);
+		time.setItem(1, dayitem);
+		return time;
 	}
 	//command
 	@Override
