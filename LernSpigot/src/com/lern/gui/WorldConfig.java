@@ -69,15 +69,47 @@ public class WorldConfig implements CommandExecutor, Listener{
 	}
 	private static Inventory timeinv() {
 		Inventory time = Bukkit.createInventory(null, 9, ChatColor.YELLOW + "Time");
+		//sunrise
+		ItemStack sun = new ItemStack(Material.ORANGE_STAINED_GLASS_PANE);
+		ItemMeta sunmeta = sun.getItemMeta();
+		sunmeta.setDisplayName(ChatColor.GOLD + "Sunrise");
+		List<String> lore = new ArrayList<>();
+		lore.add(ChatColor.LIGHT_PURPLE + "Set time to Sunrise (0)");
+		sunmeta.setLore(lore);
+		sunmeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+		sun.setItemMeta(sunmeta);
+		//day
 		ItemStack dayitem = new ItemStack(Material.YELLOW_STAINED_GLASS_PANE);
 		ItemMeta daymeata = dayitem.getItemMeta();
 		daymeata.setDisplayName(ChatColor.YELLOW + "Day");
-		List<String> lore = new ArrayList<>();
-		lore.add(ChatColor.LIGHT_PURPLE + "Set time Day (1000)");
-		daymeata.setLore(lore);
+		List<String> lored = new ArrayList<>();
+		lored.add(ChatColor.LIGHT_PURPLE + "Set time to Day (1000)");
+		daymeata.setLore(lored);
 		daymeata.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
 		dayitem.setItemMeta(daymeata);
-		time.setItem(1, dayitem);
+		//noon
+		ItemStack noon = new ItemStack(Material.BLUE_STAINED_GLASS_PANE);
+		ItemMeta noonmeta = noon.getItemMeta();
+		noonmeta.setDisplayName(ChatColor.AQUA + "Noon");
+		List<String> loren = new ArrayList<>();
+		loren.add(ChatColor.LIGHT_PURPLE + "Set time to Noon (6000)");
+		noonmeta.setLore(loren);
+		noonmeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+		noon.setItemMeta(noonmeta);
+		//Night
+		ItemStack night = new ItemStack(Material.GRAY_STAINED_GLASS_PANE);
+		ItemMeta nightmeta = night.getItemMeta();
+		nightmeta.setDisplayName(ChatColor.DARK_GRAY + "Night");
+		List<String> loreni = new ArrayList<>();
+		loreni.add(ChatColor.LIGHT_PURPLE + "Set time to night (13000)");
+		nightmeta.setLore(loreni);
+		nightmeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+		night.setItemMeta(nightmeta);
+		
+		time.setItem(1, sun);
+		time.setItem(2, dayitem);
+		time.setItem(3, noon);
+		time.setItem(4,night);
 		return time;
 	}
 	//command
