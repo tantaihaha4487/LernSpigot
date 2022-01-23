@@ -21,7 +21,7 @@ public class Main extends JavaPlugin{
 		getServer().getLogger().info(ChatColor.GREEN + "- Pligin: Lern Plugin Is Enable!");
 		getServer().getLogger().info(ChatColor.GREEN + "- Version: " + Bukkit.getVersion());
 		getServer().getLogger().info(ChatColor.GREEN + "- Max Player: " + Bukkit.getMaxPlayers());
-		getServer().getLogger().info(ChatColor.GREEN + "- View Distance: " + Bukkit.getViewDistance());
+		getServer().getLogger().info(ChatColor.GREEN + "- Max View Distance: " + Bukkit.getViewDistance());
 		getServer().getLogger().info(ChatColor.GREEN + "======================================");
 		getServer().getPluginManager().registerEvents(new ItemFrameHide(), this);
 		getServer().getPluginManager().registerEvents(new OnPlayerJoin(), this);
