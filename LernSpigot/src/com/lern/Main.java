@@ -7,6 +7,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import com.lern.Event.ItemFrameHide;
 import com.lern.Event.OnPlayerJoin;
 import com.lern.Items.ModeChange;
+import com.lern.Tab.WcTab;
 import com.lern.gui.WorldConfig;
 import com.lern.more.Coordinate;
 
@@ -25,6 +26,7 @@ public class Main extends JavaPlugin{
 		getServer().getPluginManager().registerEvents(new WorldConfig(), this);
 		
 		getCommand("wc").setExecutor(new WorldConfig());
+		getCommand("wc").setTabCompleter(new WcTab());
 		getCommand("modewand").setExecutor((CommandExecutor) new ModeChange());
 		new Coordinate().coordiante(this);
 	}
