@@ -49,10 +49,11 @@ public class WorldConfig implements CommandExecutor, Listener{
 					break;
 				
 				case ORANGE_STAINED_GLASS_PANE:
-					p.getLocation().getWorld().setTime(0);
+					p.getLocation().getWorld().setTime(24000);
 					p.closeInventory();
 					p.sendMessage(msg + ChatColor.GREEN + "time set sunrise");
 					p.playSound(loc, Sound.ENTITY_PLAYER_LEVELUP, 2, 2);
+					break;
 				case YELLOW_STAINED_GLASS_PANE:
 					p.getLocation().getWorld().setTime(1000);
 					p.closeInventory();
@@ -64,16 +65,21 @@ public class WorldConfig implements CommandExecutor, Listener{
 					p.closeInventory();
 					p.sendMessage(msg + ChatColor.GREEN + "time set noon");
 					p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 2, 2);
+					break;
 				case BLACK_STAINED_GLASS_PANE:
 					p.getLocation().getWorld().setTime(18000);
 					p.closeInventory();
 					p.sendMessage(msg + ChatColor.GREEN + "time set night");
 					p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 2, 2);
+					break;
 				case LIME_CONCRETE:
 					p.closeInventory();
 					p.sendMessage(msg + ">>>Enter custom");
+					break;
 				case BARRIER:
 					p.openInventory(worldconfig());
+					p.playSound(loc, Sound.UI_BUTTON_CLICK, 1, 1);
+					break;
 			}
 				
 		}
