@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.command.Command;
@@ -38,6 +39,7 @@ public class WorldConfig implements CommandExecutor, Listener{
 	@EventHandler
 	public void OncickInv(InventoryClickEvent e) {
 		Player p = (Player) e.getWhoClicked();
+		Location loc = p.getLocation();
 		String msg =  ChatColor.YELLOW + "[" + ChatColor.RED + "!" + ChatColor.YELLOW + "] ";
 		if(e.getView().getTitle().equals("World Config") || e.getView().getTitle().equals( ChatColor.YELLOW + "Time")) {
 			e.setCancelled(true);
@@ -45,13 +47,33 @@ public class WorldConfig implements CommandExecutor, Listener{
 				case CLOCK:
 					p.openInventory(timeinv());
 					break;
+				
+				case ORANGE_STAINED_GLASS_PANE:
+					p.getLocation().getWorld().setTime(0);
+					p.closeInventory();
+					p.sendMessage(msg + ChatColor.GREEN + "time set sunrise");
+					p.playSound(loc, Sound.ENTITY_PLAYER_LEVELUP, 2, 2);
 				case YELLOW_STAINED_GLASS_PANE:
 					p.getLocation().getWorld().setTime(1000);
 					p.closeInventory();
 					p.sendMessage(msg + ChatColor.GREEN + "time set day");
 					p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 2, 2);
-					
 					break;
+				case BLUE_STAINED_GLASS_PANE:
+					p.getLocation().getWorld().setTime(6000);
+					p.closeInventory();
+					p.sendMessage(msg + ChatColor.GREEN + "time set noon");
+					p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 2, 2);
+				case BLACK_STAINED_GLASS_PANE:
+					p.getLocation().getWorld().setTime(18000);
+					p.closeInventory();
+					p.sendMessage(msg + ChatColor.GREEN + "time set night");
+					p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 2, 2);
+				case LIME_CONCRETE:
+					p.closeInventory();
+					p.sendMessage(msg + ">>>Enter custom");
+				case BARRIER:
+					p.openInventory(worldconfig());
 			}
 				
 		}
@@ -107,7 +129,7 @@ public class WorldConfig implements CommandExecutor, Listener{
 		nightmeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
 		night.setItemMeta(nightmeta);
 		//custom
-		ItemStack custom = new ItemStack(Material.LIGHT_BLUE_CONCRETE);
+		ItemStack custom = new ItemStack(Material.LIME_CONCRETE);
 		ItemMeta custommeta = custom.getItemMeta();
 		custommeta.setDisplayName(ChatColor.GREEN + "Custom");
 		List<String> lorecustom= new ArrayList<>();
