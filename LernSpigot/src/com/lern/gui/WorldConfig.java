@@ -11,13 +11,11 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.player.PlayerChatEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
@@ -52,6 +50,7 @@ public class WorldConfig implements CommandExecutor, Listener{
 					p.closeInventory();
 					p.sendMessage(msg + ChatColor.GREEN + "time set day");
 					p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 2, 2);
+					
 					break;
 			}
 				
@@ -115,15 +114,26 @@ public class WorldConfig implements CommandExecutor, Listener{
 		lorecustom.add(ChatColor.LIGHT_PURPLE + "Set time to (?)");
 		custommeta.setLore(lorecustom);
 		custommeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-		custommeta.addEnchant(Enchantment.LUCK, 1, false);
-		custommeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-		custom.setItemMeta(custommeta)
+		custom.setItemMeta(custommeta);
+		//back
+		ItemStack back = new ItemStack(Material.BARRIER);
+		ItemMeta backmeta = back.getItemMeta();
+		backmeta.setDisplayName("" +ChatColor.RED + ChatColor.BOLD + "< Back");
+		List<String> loreback = new ArrayList<>();
+		loreback.add(ChatColor.LIGHT_PURPLE + "Back to World Config");
+		backmeta.setLore(loreback);
+		backmeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+		backmeta.addEnchant(Enchantment.LUCK, 1, false);
+		backmeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+		back.setItemMeta(backmeta);
+		
 ;		
 		time.setItem(1, sun);
 		time.setItem(2, dayitem);
 		time.setItem(3, noon);
 		time.setItem(4,night);
 		time.setItem(5, custom);
+		time.setItem(8, back);
 		
 		return time;
 	}
@@ -156,6 +166,5 @@ public class WorldConfig implements CommandExecutor, Listener{
 		}
 		return true;
 	}
-	
 	
 }
