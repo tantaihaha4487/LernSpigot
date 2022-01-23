@@ -36,7 +36,8 @@ public class ModeChange implements Listener, CommandExecutor{
 	//Event
 	  @EventHandler
 	    public void onRightClick (PlayerInteractEvent event) {
-	        Player p = event.getPlayer();
+		  if(event.getItem() == null) return;
+		  Player p = event.getPlayer();
 	        if (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
 	            if (event.getItem().getItemMeta().getDisplayName().equals("§5Chage Mode Stick")) {
 	            	if(p.getGameMode() == GameMode.CREATIVE) {
@@ -49,6 +50,7 @@ public class ModeChange implements Listener, CommandExecutor{
 						}
 	            }
 	        }
+		  
 	    }
 	//item
 	public static ItemStack createmodewand() {

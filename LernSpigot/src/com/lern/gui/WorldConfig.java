@@ -9,16 +9,31 @@ import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 public class WorldConfig implements CommandExecutor, Listener{
 	//Event
+	@EventHandler
+	public void OnRightCick(PlayerInteractEvent e) {
+		Player p = e.getPlayer();
+        if(e.getItem() == null) return;
+        if (e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK) {
+            if (e.getItem().getItemMeta().getDisplayName().equals(ChatColor.AQUA + "World Config Wand")) {
+            	p.openInventory(worldconfig());
+            	}
+            }
+	}
+	
 	@EventHandler
 	public void OncickInv(InventoryClickEvent e) {
 		Player p = (Player) e.getWhoClicked();
@@ -36,13 +51,7 @@ public class WorldConfig implements CommandExecutor, Listener{
 		clocksmeta.setDisplayName(ChatColor.GREEN + "Time");
 		clock.setItemMeta(clocksmeta);
 		
-		ItemStack grass = new ItemStack(Material.GRASS_BLOCK);
-		ItemMeta grassmeta = grass.getItemMeta();
-		grassmeta.setDisplayName(ChatColor.GREEN + "");
-		grass.setItemMeta(grassmeta);
-		
-		inv.setItem(2, clock);
-		inv.setItem(4, grass);
+		inv.setItem(4, clock);
 		
 		return inv;
 	}
@@ -50,23 +59,29 @@ public class WorldConfig implements CommandExecutor, Listener{
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String ladel, String[] args) {
 		if(cmd.getName().equalsIgnoreCase("wc")) {
-			Player p = (Player) sender;
-			p.openInventory(worldconfig());
+			if(args.length == 0l) {
+				Player p = (Player) sender;
+				p.openInventory(worldconfig());
+			}
 			if(args.length > 0) {
 				if(args[0].equalsIgnoreCase("wand")) {
+					Player p = (Player) sender;
 					ItemStack stick = new ItemStack(Material.STICK);
 					ItemMeta stickmeta = stick.getItemMeta();
 					stickmeta.setDisplayName(ChatColor.AQUA + "World Config Wand");
+					
 					List<String> lore = new ArrayList<>();
 					lore.add(ChatColor.LIGHT_PURPLE + "Right Cick For Open World Config GUI");
 					stickmeta.setLore(lore);
+					stickmeta.addEnchant(Enchantment.LOOT_BONUS_MOBS, 1, false);
+			        stickmeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+			         
 					stick.setItemMeta(stickmeta);
 					
 					p.getInventory().addItem(stick);
 				}
-				
 			}
-			}
+		}
 		return true;
 	}
 	
