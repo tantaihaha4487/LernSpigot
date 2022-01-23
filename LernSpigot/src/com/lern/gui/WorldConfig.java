@@ -11,11 +11,13 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.player.PlayerChatEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
@@ -97,19 +99,32 @@ public class WorldConfig implements CommandExecutor, Listener{
 		noonmeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
 		noon.setItemMeta(noonmeta);
 		//Night
-		ItemStack night = new ItemStack(Material.GRAY_STAINED_GLASS_PANE);
+		ItemStack night = new ItemStack(Material.BLACK_STAINED_GLASS_PANE);
 		ItemMeta nightmeta = night.getItemMeta();
-		nightmeta.setDisplayName(ChatColor.DARK_GRAY + "Night");
+		nightmeta.setDisplayName("Night");
 		List<String> loreni = new ArrayList<>();
 		loreni.add(ChatColor.LIGHT_PURPLE + "Set time to night (13000)");
 		nightmeta.setLore(loreni);
 		nightmeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
 		night.setItemMeta(nightmeta);
-		
+		//custom
+		ItemStack custom = new ItemStack(Material.LIGHT_BLUE_CONCRETE);
+		ItemMeta custommeta = custom.getItemMeta();
+		custommeta.setDisplayName(ChatColor.GREEN + "Custom");
+		List<String> lorecustom= new ArrayList<>();
+		lorecustom.add(ChatColor.LIGHT_PURPLE + "Set time to (?)");
+		custommeta.setLore(lorecustom);
+		custommeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+		custommeta.addEnchant(Enchantment.LUCK, 1, false);
+		custommeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+		custom.setItemMeta(custommeta)
+;		
 		time.setItem(1, sun);
 		time.setItem(2, dayitem);
 		time.setItem(3, noon);
 		time.setItem(4,night);
+		time.setItem(5, custom);
+		
 		return time;
 	}
 	//command
