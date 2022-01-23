@@ -27,14 +27,19 @@ public class ItemFrameHide implements Listener{
 		if(!p.isSneaking()) return;
 		if(e.getRightClicked().getType().equals(EntityType.ITEM_FRAME)||
 				e.getRightClicked().getType().equals(EntityType.GLOW_ITEM_FRAME)) {
-			if(item.isVisible() == true || gitem.isVisible() == true) {
+			if(item.isVisible() == true) {
 				item.setVisible(false);
-				gitem.setVisible(false);
-				
 				p.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(msg + "Hide"));
 			}
 					else {
 						item.setVisible(true);
+						p.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(msg + "Show"));
+			}
+			if(gitem.isVisible() == true) {
+				gitem.setVisible(false);
+				p.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(msg + "Hide"));
+			}
+					else {
 						gitem.setVisible(true);
 						p.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(msg + "Show"));
 			}
