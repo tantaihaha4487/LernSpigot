@@ -4,6 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import com.lern.Event.GItemFramehide;
 import com.lern.Event.ItemFrameHide;
 import com.lern.Event.OnPlayerJoin;
 import com.lern.Items.ModeChange;
@@ -24,6 +25,7 @@ public class Main extends JavaPlugin{
 		getServer().getLogger().info(ChatColor.GREEN + "- Max View Distance: " + Bukkit.getViewDistance());
 		getServer().getLogger().info(ChatColor.GREEN + "======================================");
 		getServer().getPluginManager().registerEvents(new ItemFrameHide(), this);
+		getServer().getPluginManager().registerEvents(new GItemFramehide(), this);
 		getServer().getPluginManager().registerEvents(new OnPlayerJoin(), this);
 		getServer().getPluginManager().registerEvents(new ModeChange(), this);
 		getServer().getPluginManager().registerEvents(new WorldConfig(), this);

@@ -42,7 +42,7 @@ public class WorldConfig implements CommandExecutor, Listener{
 		Player p = (Player) e.getWhoClicked();
 		Location loc = p.getLocation();
 		String msg =  ChatColor.YELLOW + "[" + ChatColor.RED + "!" + ChatColor.YELLOW + "] ";
-		
+		/*===============================================[Main Inventory Options]===============================================*/
 		if(e.getView().getTitle().equals("World Config")) {
 			e.setCancelled(true);
 			switch(e.getCurrentItem().getType()) {
@@ -60,7 +60,7 @@ public class WorldConfig implements CommandExecutor, Listener{
 				break;
 			}
 		}
-		//inv Weather
+		/*===============================================[Weather Inventory Options]===============================================*/
 		if(e.getView().getTitle().equals(ChatColor.BLUE + "Weather")) {
 			e.setCancelled(true);
 			switch (e.getCurrentItem().getType()) {
@@ -70,7 +70,7 @@ public class WorldConfig implements CommandExecutor, Listener{
 				break;
 				}
 			}
-		//inv time
+		/*===============================================[Time Inventory Options]===============================================*/
 		if(e.getView().getTitle().equals(ChatColor.YELLOW + "Time")) {
 			e.setCancelled(true);
 			switch(e.getCurrentItem().getType()) {
