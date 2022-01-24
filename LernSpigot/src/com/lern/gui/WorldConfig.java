@@ -46,6 +46,7 @@ public class WorldConfig implements CommandExecutor, Listener{
 			switch(e.getCurrentItem().getType()) {
 				case CLOCK:
 					p.openInventory(timeinv());
+					p.playSound(loc, Sound.UI_BUTTON_CLICK, 1, 1);
 					break;
 				
 				case ORANGE_STAINED_GLASS_PANE:
