@@ -24,6 +24,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 public class WorldConfig implements CommandExecutor, Listener{
+	/*===============================================[Stick Cick Event]===============================================*/
 	//Event
 	@EventHandler
 	public void OnRightCick(PlayerInteractEvent e) {
@@ -35,13 +36,13 @@ public class WorldConfig implements CommandExecutor, Listener{
         	p.openInventory(worldconfig());
         	}
 	}
-	
+	/*===============================================[Inventory Event]===============================================*/
 	@EventHandler
 	public void OncickInv(InventoryClickEvent e) {
 		Player p = (Player) e.getWhoClicked();
 		Location loc = p.getLocation();
 		String msg =  ChatColor.YELLOW + "[" + ChatColor.RED + "!" + ChatColor.YELLOW + "] ";
-		//Main inv
+		
 		if(e.getView().getTitle().equals("World Config")) {
 			e.setCancelled(true);
 			switch(e.getCurrentItem().getType()) {
@@ -109,7 +110,7 @@ public class WorldConfig implements CommandExecutor, Listener{
 		}
 	}
 	
-	//Main inventory
+	/*===============================================[Main Inventory]===============================================*/
 	private static Inventory worldconfig() {
 		Inventory inv = Bukkit.createInventory(null, 9, "World Config");
 		//clock  time inv
@@ -118,6 +119,7 @@ public class WorldConfig implements CommandExecutor, Listener{
 		clocksmeta.setDisplayName(ChatColor.GREEN + "Time");
 		List<String> loreclock = new ArrayList<>();
 		loreclock.add(ChatColor.LIGHT_PURPLE + "Set time in your world");
+		clocksmeta.setLore(loreclock);
 		clock.setItemMeta(clocksmeta);
 		//weather weatherinv
 		ItemStack light = new ItemStack(Material.LIGHTNING_ROD);
@@ -144,6 +146,7 @@ public class WorldConfig implements CommandExecutor, Listener{
 		inv.setItem(8, back);
 		return inv;
 	}
+	/*===============================================[Time Inventory]===============================================*/
 	private static Inventory timeinv() {
 		Inventory time = Bukkit.createInventory(null, 9, ChatColor.YELLOW + "Time");
 		//sunrise
@@ -203,7 +206,6 @@ public class WorldConfig implements CommandExecutor, Listener{
 		backmeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 		back.setItemMeta(backmeta);
 		
-;		
 		time.setItem(1, sun);
 		time.setItem(2, dayitem);
 		time.setItem(3, noon);
@@ -213,6 +215,7 @@ public class WorldConfig implements CommandExecutor, Listener{
 		
 		return time;
 	}
+	/*===============================================[Weather Inventory]===============================================*/
 	private static Inventory weatherinv() {
 		Inventory weather = Bukkit.createInventory(null, 9, ChatColor.BLUE + "Weather");
 		//back
@@ -230,6 +233,7 @@ public class WorldConfig implements CommandExecutor, Listener{
 		weather.setItem(8, back);
 		return weather;
 	}
+	/*===============================================[Give Wand Commands]===============================================*/
 	//command
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String ladel, String[] args) {
