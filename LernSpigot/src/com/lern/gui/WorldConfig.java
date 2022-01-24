@@ -41,60 +41,107 @@ public class WorldConfig implements CommandExecutor, Listener{
 		Player p = (Player) e.getWhoClicked();
 		Location loc = p.getLocation();
 		String msg =  ChatColor.YELLOW + "[" + ChatColor.RED + "!" + ChatColor.YELLOW + "] ";
-		if(e.getView().getTitle().equals("World Config") || e.getView().getTitle().equals( ChatColor.YELLOW + "Time")) {
+		//Main inv
+		if(e.getView().getTitle().equals("World Config")) {
 			e.setCancelled(true);
 			switch(e.getCurrentItem().getType()) {
-				case CLOCK:
-					p.openInventory(timeinv());
-					p.playSound(loc, Sound.UI_BUTTON_CLICK, 1, 1);
-					break;
-				
-				case ORANGE_STAINED_GLASS_PANE:
-					p.getLocation().getWorld().setTime(24000);
-					p.closeInventory();
-					p.sendMessage(msg + ChatColor.GREEN + "time set sunrise");
-					p.playSound(loc, Sound.ENTITY_PLAYER_LEVELUP, 2, 2);
-					break;
-				case YELLOW_STAINED_GLASS_PANE:
-					p.getLocation().getWorld().setTime(1000);
-					p.closeInventory();
-					p.sendMessage(msg + ChatColor.GREEN + "time set day");
-					p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 2, 2);
-					break;
-				case BLUE_STAINED_GLASS_PANE:
-					p.getLocation().getWorld().setTime(6000);
-					p.closeInventory();
-					p.sendMessage(msg + ChatColor.GREEN + "time set noon");
-					p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 2, 2);
-					break;
-				case BLACK_STAINED_GLASS_PANE:
-					p.getLocation().getWorld().setTime(18000);
-					p.closeInventory();
-					p.sendMessage(msg + ChatColor.GREEN + "time set night");
-					p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 2, 2);
-					break;
-				case LIME_CONCRETE:
-					p.closeInventory();
-					p.sendMessage(msg + ">>>Enter custom");
-					break;
-				case BARRIER:
-					p.openInventory(worldconfig());
-					p.playSound(loc, Sound.UI_BUTTON_CLICK, 1, 1);
-					break;
+			case CLOCK:
+				p.openInventory(timeinv());
+				p.playSound(loc, Sound.UI_BUTTON_CLICK, 1, 1);
+				break;
+			case LIGHTNING_ROD:
+				p.openInventory(weatherinv());
+				p.playSound(loc, Sound.UI_BUTTON_CLICK, 1, 1);
+				break;
+			case BARRIER:
+				p.closeInventory();
+				p.playSound(loc, Sound.UI_BUTTON_CLICK, 1, 1);
+				break;
 			}
-				
+		}
+		//inv Weather
+		if(e.getView().getTitle().equals(ChatColor.BLUE + "Weather")) {
+			e.setCancelled(true);
+			switch (e.getCurrentItem().getType()) {
+			case BARRIER:
+				p.openInventory(worldconfig());
+				p.playSound(loc, Sound.UI_BUTTON_CLICK, 1, 1);
+				break;
+				}
+			}
+		//inv time
+		if(e.getView().getTitle().equals(ChatColor.YELLOW + "Time")) {
+			e.setCancelled(true);
+			switch(e.getCurrentItem().getType()) {
+			case ORANGE_STAINED_GLASS_PANE:
+				p.getLocation().getWorld().setTime(24000);
+				p.closeInventory();
+				p.sendMessage(msg + ChatColor.GREEN + "time set sunrise");
+				p.playSound(loc, Sound.ENTITY_PLAYER_LEVELUP, 2, 2);
+				break;
+			case YELLOW_STAINED_GLASS_PANE:
+				p.getLocation().getWorld().setTime(1000);
+				p.closeInventory();
+				p.sendMessage(msg + ChatColor.GREEN + "time set day");
+				p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 2, 2);
+				break;
+			case BLUE_STAINED_GLASS_PANE:
+				p.getLocation().getWorld().setTime(6000);
+				p.closeInventory();
+				p.sendMessage(msg + ChatColor.GREEN + "time set noon");
+				p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 2, 2);
+				break;
+			case BLACK_STAINED_GLASS_PANE:
+				p.getLocation().getWorld().setTime(18000);
+				p.closeInventory();
+				p.sendMessage(msg + ChatColor.GREEN + "time set night");
+				p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 2, 2);
+				break;
+			case LIME_CONCRETE:
+				p.closeInventory();
+				p.sendMessage(msg + ">>>Enter custom");
+				break;
+			case BARRIER:
+				p.openInventory(worldconfig());
+				p.playSound(loc, Sound.UI_BUTTON_CLICK, 1, 1);
+				break;
+			}
 		}
 	}
 	
-	//inventory
+	//Main inventory
 	private static Inventory worldconfig() {
 		Inventory inv = Bukkit.createInventory(null, 9, "World Config");
-		
+		//clock  time inv
 		ItemStack clock = new ItemStack(Material.CLOCK);
 		ItemMeta clocksmeta = clock.getItemMeta();
 		clocksmeta.setDisplayName(ChatColor.GREEN + "Time");
+		List<String> loreclock = new ArrayList<>();
+		loreclock.add(ChatColor.LIGHT_PURPLE + "Set time in your world");
 		clock.setItemMeta(clocksmeta);
+		//weather weatherinv
+		ItemStack light = new ItemStack(Material.LIGHTNING_ROD);
+		ItemMeta lightmeta = light.getItemMeta();
+		lightmeta.setDisplayName(ChatColor.BLUE + "WeaTher");
+		List<String> loreweather = new ArrayList<>();
+		loreweather.add(ChatColor.LIGHT_PURPLE + "Set Weather in your world");
+		lightmeta.setLore(loreweather);
+		light.setItemMeta(lightmeta);
+		//back
+		ItemStack back = new ItemStack(Material.BARRIER);
+		ItemMeta backmeta = back.getItemMeta();
+		backmeta.setDisplayName("" +ChatColor.RED + ChatColor.BOLD + "X Exit");
+		List<String> loreback = new ArrayList<>();
+		loreback.add(ChatColor.LIGHT_PURPLE + "Back to Game");
+		backmeta.setLore(loreback);
+		backmeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+		backmeta.addEnchant(Enchantment.LUCK, 1, false);
+		backmeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+		back.setItemMeta(backmeta);
+		
+		inv.setItem(2, light);
 		inv.setItem(4, clock);
+		inv.setItem(8, back);
 		return inv;
 	}
 	private static Inventory timeinv() {
@@ -165,6 +212,23 @@ public class WorldConfig implements CommandExecutor, Listener{
 		time.setItem(8, back);
 		
 		return time;
+	}
+	private static Inventory weatherinv() {
+		Inventory weather = Bukkit.createInventory(null, 9, ChatColor.BLUE + "Weather");
+		//back
+		ItemStack back = new ItemStack(Material.BARRIER);
+		ItemMeta backmeta = back.getItemMeta();
+		backmeta.setDisplayName("" +ChatColor.RED + ChatColor.BOLD + "< Back");
+		List<String> loreback = new ArrayList<>();
+		loreback.add(ChatColor.LIGHT_PURPLE + "Back to World Config");
+		backmeta.setLore(loreback);
+		backmeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+		backmeta.addEnchant(Enchantment.LUCK, 1, false);
+		backmeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+		back.setItemMeta(backmeta);
+		
+		weather.setItem(8, back);
+		return weather;
 	}
 	//command
 	@Override
