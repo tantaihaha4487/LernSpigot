@@ -66,7 +66,7 @@ public class WorldConfig implements CommandExecutor, Listener{
 			switch (e.getCurrentItem().getType()) {
 			case BARRIER:
 				p.openInventory(worldconfig());
-				p.playSound(loc, Sound.UI_BUTTON_CLICK, 1, 1);
+				p.playSound(loc, Sound.ENTITY_ENDERMAN_TELEPORT, 2, 5);
 				break;
 				}
 			}
@@ -92,10 +92,16 @@ public class WorldConfig implements CommandExecutor, Listener{
 				p.sendMessage(msg + ChatColor.GREEN + "time set noon");
 				p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 2, 2);
 				break;
+			case BROWN_STAINED_GLASS_PANE:
+				p.getLocation().getWorld().setTime(12500);
+				p.closeInventory();
+				p.sendMessage(msg + ChatColor.GREEN + "time set twilight");
+				p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 2, 2);
+				break;
 			case BLACK_STAINED_GLASS_PANE:
 				p.getLocation().getWorld().setTime(18000);
 				p.closeInventory();
-				p.sendMessage(msg + ChatColor.GREEN + "time set night");
+				p.sendMessage(msg + ChatColor.GREEN + "time set midnight");
 				p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 2, 2);
 				break;
 			case LIME_CONCRETE:
@@ -104,7 +110,7 @@ public class WorldConfig implements CommandExecutor, Listener{
 				break;
 			case BARRIER:
 				p.openInventory(worldconfig());
-				p.playSound(loc, Sound.UI_BUTTON_CLICK, 1, 1);
+				p.playSound(loc, Sound.ENTITY_ENDERMAN_TELEPORT, 2, 5);
 				break;
 			}
 		}
@@ -176,15 +182,23 @@ public class WorldConfig implements CommandExecutor, Listener{
 		noonmeta.setLore(loren);
 		noonmeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
 		noon.setItemMeta(noonmeta);
-		//Night
-		ItemStack night = new ItemStack(Material.BLACK_STAINED_GLASS_PANE);
-		ItemMeta nightmeta = night.getItemMeta();
-		nightmeta.setDisplayName("Night");
+		//twilight
+		ItemStack twilight = new ItemStack(Material.BROWN_STAINED_GLASS_PANE);
+		ItemMeta twilightmeta = twilight.getItemMeta();
+		twilightmeta.setDisplayName(ChatColor.DARK_GRAY + "Twilight");
+		List<String> loretwi = new ArrayList<>();
+		loretwi.add(ChatColor.LIGHT_PURPLE + "Set time to twilight (12500)");
+		twilightmeta.setLore(loretwi);
+		twilight.setItemMeta(twilightmeta);
+		//midNight
+		ItemStack midnight = new ItemStack(Material.BLACK_STAINED_GLASS_PANE);
+		ItemMeta midnightmeta = midnight.getItemMeta();
+		midnightmeta.setDisplayName("MidNight");
 		List<String> loreni = new ArrayList<>();
-		loreni.add(ChatColor.LIGHT_PURPLE + "Set time to night (13000)");
-		nightmeta.setLore(loreni);
-		nightmeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-		night.setItemMeta(nightmeta);
+		loreni.add(ChatColor.LIGHT_PURPLE + "Set time to midnight (18000)");
+		midnightmeta.setLore(loreni);
+		midnightmeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+		midnight.setItemMeta(midnightmeta);
 		//custom
 		ItemStack custom = new ItemStack(Material.LIME_CONCRETE);
 		ItemMeta custommeta = custom.getItemMeta();
@@ -209,8 +223,9 @@ public class WorldConfig implements CommandExecutor, Listener{
 		time.setItem(1, sun);
 		time.setItem(2, dayitem);
 		time.setItem(3, noon);
-		time.setItem(4,night);
-		time.setItem(5, custom);
+		time.setItem(4, twilight);
+		time.setItem(5, midnight);
+		time.setItem(6, custom);
 		time.setItem(8, back);
 		
 		return time;
