@@ -22,6 +22,10 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.plugin.Plugin;
+import org.checkerframework.common.returnsreceiver.qual.This;
+
+import com.lern.Main;
 
 public class WorldConfig implements CommandExecutor, Listener{
 	/*===============================================[Stick Cick Event]===============================================*/
@@ -41,7 +45,7 @@ public class WorldConfig implements CommandExecutor, Listener{
 	public void OncickInv(InventoryClickEvent e) {
 		Player p = (Player) e.getWhoClicked();
 		Location loc = p.getLocation();
-		String msg =  ChatColor.YELLOW + "[" + ChatColor.RED + "!" + ChatColor.YELLOW + "] ";
+		String msg =  ChatColor.YELLOW + "[" + ChatColor.RED + "!" + ChatColor.YELLOW + "] " + ChatColor.GREEN;
 		/*===============================================[Main Inventory Options]===============================================*/
 		if(e.getView().getTitle().equals("World Config")) {
 			e.setCancelled(true);
@@ -66,7 +70,25 @@ public class WorldConfig implements CommandExecutor, Listener{
 			switch (e.getCurrentItem().getType()) {
 			case BARRIER:
 				p.openInventory(worldconfig());
-				p.playSound(loc, Sound.ENTITY_ENDERMAN_TELEPORT, 2, 5);
+				p.playSound(loc, Sound.ENTITY_ENDERMAN_TELEPORT, 2, 1);
+				break;
+			case WHITE_STAINED_GLASS_PANE:
+				Bukkit.getServer().dispatchCommand(plugin.getServer().getConsoleSender(), "weather clear");
+				p.sendMessage(msg + "Set weather to Clear");
+				p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 2, 2);
+				p.closeInventory();
+				break;
+			case BLUE_STAINED_GLASS_PANE:
+				Bukkit.getServer().dispatchCommand(plugin.getServer().getConsoleSender(), "weather rain");
+				p.sendMessage(msg + "Set weather to Rain");
+				p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 2, 2);
+				p.closeInventory();
+				break;
+			case BROWN_STAINED_GLASS_PANE:
+				Bukkit.getServer().dispatchCommand(plugin.getServer().getConsoleSender(), "weather thunderstorm");
+				p.sendMessage(msg + "Set weather to Thunder");
+				p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 2, 2);
+				p.closeInventory();
 				break;
 				}
 			}
@@ -110,7 +132,7 @@ public class WorldConfig implements CommandExecutor, Listener{
 				break;
 			case BARRIER:
 				p.openInventory(worldconfig());
-				p.playSound(loc, Sound.ENTITY_ENDERMAN_TELEPORT, 2, 5);
+				p.playSound(loc, Sound.ENTITY_ENDERMAN_TELEPORT, 2, 1);
 				break;
 			}
 		}
@@ -244,7 +266,34 @@ public class WorldConfig implements CommandExecutor, Listener{
 		backmeta.addEnchant(Enchantment.LUCK, 1, false);
 		backmeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 		back.setItemMeta(backmeta);
-		
+		//Clear
+		ItemStack clear = new ItemStack(Material.WHITE_STAINED_GLASS_PANE);
+		ItemMeta clearMeta = clear.getItemMeta();
+		clearMeta.setDisplayName(ChatColor.WHITE + "Clear");
+		List<String> loreclear = new ArrayList<>();
+		loreclear.add(ChatColor.LIGHT_PURPLE + "Set weather to Clear");
+		clearMeta.setLore(loreclear);
+		clear.setItemMeta(clearMeta);
+		//rain
+		ItemStack rain = new ItemStack(Material.BLUE_STAINED_GLASS_PANE);
+		ItemMeta rainMeta = rain.getItemMeta();
+		rainMeta.setDisplayName(ChatColor.DARK_AQUA + "Rain");
+		List<String> lorerain = new ArrayList<>();
+		lorerain.add(ChatColor.LIGHT_PURPLE + "Set weather to Rain");
+		rainMeta.setLore(lorerain);
+		rain.setItemMeta(rainMeta);
+		//storm
+		ItemStack storm = new ItemStack(Material.BROWN_STAINED_GLASS_PANE);
+		ItemMeta stromMeta = storm.getItemMeta();
+		stromMeta.setDisplayName(ChatColor.BLUE + "Thunder");
+		List<String> lorestrom = new ArrayList<>();
+		lorestrom.add(ChatColor.LIGHT_PURPLE + "Set weather to Thunder");
+		stromMeta.setLore(lorestrom);
+		storm.setItemMeta(stromMeta);
+ 		
+		weather.setItem(1, clear);
+		weather.setItem(3, rain);
+		weather.setItem(5, storm);
 		weather.setItem(8, back);
 		return weather;
 	}
