@@ -12,3 +12,6 @@ commands:
    wc:
       description : World Config GUI
       usage: /wc
+   r: 
+      description : Reload Server
+      usage : /r

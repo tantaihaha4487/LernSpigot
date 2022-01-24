@@ -22,10 +22,6 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.plugin.Plugin;
-import org.checkerframework.common.returnsreceiver.qual.This;
-
-import com.lern.Main;
 
 public class WorldConfig implements CommandExecutor, Listener{
 	/*===============================================[Stick Cick Event]===============================================*/
@@ -73,19 +69,19 @@ public class WorldConfig implements CommandExecutor, Listener{
 				p.playSound(loc, Sound.ENTITY_ENDERMAN_TELEPORT, 2, 1);
 				break;
 			case WHITE_STAINED_GLASS_PANE:
-				Bukkit.getServer().dispatchCommand(plugin.getServer().getConsoleSender(), "weather clear");
+				Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "weather clear");
 				p.sendMessage(msg + "Set weather to Clear");
 				p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 2, 2);
 				p.closeInventory();
 				break;
 			case BLUE_STAINED_GLASS_PANE:
-				Bukkit.getServer().dispatchCommand(plugin.getServer().getConsoleSender(), "weather rain");
+				Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "weather rain");
 				p.sendMessage(msg + "Set weather to Rain");
 				p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 2, 2);
 				p.closeInventory();
 				break;
 			case BROWN_STAINED_GLASS_PANE:
-				Bukkit.getServer().dispatchCommand(plugin.getServer().getConsoleSender(), "weather thunderstorm");
+				Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "weather thunder");
 				p.sendMessage(msg + "Set weather to Thunder");
 				p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 2, 2);
 				p.closeInventory();

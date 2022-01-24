@@ -9,6 +9,7 @@ import com.lern.Event.ItemFrameHide;
 import com.lern.Event.OnPlayerJoin;
 import com.lern.Items.ModeChange;
 import com.lern.Tab.WcTab;
+import com.lern.commands.ReCommand;
 import com.lern.gui.WorldConfig;
 import com.lern.more.Coordinate;
 
@@ -17,22 +18,25 @@ import net.md_5.bungee.api.ChatColor;
 public class Main extends JavaPlugin{
 	@Override
 	public void onEnable() {
-		
+		/*===============================================[Logger]===============================================*/
 		getServer().getLogger().info(ChatColor.GREEN + "===============[Plugin]===============");
 		getServer().getLogger().info(ChatColor.GREEN + "- Pligin: Lern Plugin Is Enable!");
 		getServer().getLogger().info(ChatColor.GREEN + "- Version: " + Bukkit.getVersion());
 		getServer().getLogger().info(ChatColor.GREEN + "- Max Player: " + Bukkit.getMaxPlayers());
 		getServer().getLogger().info(ChatColor.GREEN + "- Max View Distance: " + Bukkit.getViewDistance());
 		getServer().getLogger().info(ChatColor.GREEN + "======================================");
+		/*===============================================[Event]===============================================*/
 		getServer().getPluginManager().registerEvents(new ItemFrameHide(), this);
 		getServer().getPluginManager().registerEvents(new GItemFramehide(), this);
 		getServer().getPluginManager().registerEvents(new OnPlayerJoin(), this);
 		getServer().getPluginManager().registerEvents(new ModeChange(), this);
 		getServer().getPluginManager().registerEvents(new WorldConfig(), this);
-		
+		/*===============================================[TCMD]===============================================*/
 		getCommand("wc").setExecutor(new WorldConfig());
 		getCommand("wc").setTabCompleter(new WcTab());
 		getCommand("modewand").setExecutor((CommandExecutor) new ModeChange());
+		getCommand("r").setExecutor(new ReCommand());
+		/*===============================================[Mores]===============================================*/
 		new Coordinate().coordiante(this);
 	}
 }
