@@ -12,7 +12,7 @@ import net.md_5.bungee.api.chat.TextComponent;
 
 public class Coordinate{
 	private Main Plugin;
-    public static String getCardinalDirection(final Player player) {
+    public static String getCardinalDirection(Player player) {
         double rotation = (player.getLocation().getYaw() - 180.0f) % 360.0f;
         if (rotation < 0.0) {
             rotation += 360.0;

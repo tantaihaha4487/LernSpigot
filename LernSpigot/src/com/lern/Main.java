@@ -38,5 +38,6 @@ public class Main extends JavaPlugin{
 		getCommand("r").setExecutor(new ReCommand());
 		/*===============================================[Mores]===============================================*/
 		new Coordinate().coordiante(this);
+		
 	}
 }
