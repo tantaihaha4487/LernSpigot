@@ -39,7 +39,7 @@ public class ModeChange implements Listener, CommandExecutor{
 		  if(event.getItem() == null) return;
 		  Player p = event.getPlayer();
 	        if (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
-	            if (event.getItem().getItemMeta().getDisplayName().equals("§5Chage Mode Stick")) {
+	            if (event.getItem().getItemMeta().getDisplayName().equals("Chage Mode Stick")) {
 	            	if(p.getGameMode() == GameMode.CREATIVE) {
 	            		p.setGameMode(GameMode.SURVIVAL);
 	            		p.sendMessage(ChatColor.GREEN + "Change to Survival");
@@ -57,12 +57,12 @@ public class ModeChange implements Listener, CommandExecutor{
 	     ItemStack item = new ItemStack(Material.STICK);
          ItemMeta meta = item.getItemMeta();
  
-         meta.setDisplayName("§5Chage Mode Stick");
+         meta.setDisplayName("Chage Mode Stick");
          List<String> lore = new ArrayList<>();
-         lore.add("§bRight Cick For Change Game Mode");
-         lore.add("§bCreative => Survival");
-         lore.add("§b Or");
-         lore.add("§bSurvival => Creative");
+         lore.add("Right Cick For Change Game Mode");
+         lore.add("Creative => Survival");
+         lore.add("Or");
+         lore.add("Survival => Creative");
          
          meta.setLore(lore);
          meta.addEnchant(Enchantment.FIRE_ASPECT, 1, false);

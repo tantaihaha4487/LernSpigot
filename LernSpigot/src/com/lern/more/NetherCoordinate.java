@@ -30,11 +30,13 @@ public class NetherCoordinate {
   	              	int netherY = y / 8;
   	              	int netherZ = z / 8;
   	              	
-  	              	String Emoji = ChatColor.translateAlternateColorCodes((char) 0, "►");
+  	              	String Emoji = ChatColor.DARK_PURPLE + "> ";
   	              	
   	            	if (p.getInventory().getItemInMainHand().getType().equals(Material.OBSIDIAN) || 
 	  	            		  p.getInventory().getItemInOffHand().getType().equals(Material.OBSIDIAN)) {
-	  	            	  p.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent("" + netherX + " " +  netherY + " " + netherZ));
+	  	            	  p.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(ChatColor.GREEN + "Over World " + ChatColor.GOLD +
+	  	            			  ChatColor.BOLD+ + x + " " + y + " " + z + " " + Emoji + ChatColor.GREEN + "Nether " +  
+	  	            			  ChatColor.GOLD + ChatColor.BOLD + netherX + " " + netherY + " "  + netherZ));
 	            	}
 					
 				}
