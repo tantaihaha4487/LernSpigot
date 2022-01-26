@@ -72,11 +72,6 @@ public class Coordinate{
 	  	              	if (p.getInventory().getItemInMainHand().getType().equals(Material.COMPASS) || 
 	  	            		  p.getInventory().getItemInOffHand().getType().equals(Material.COMPASS)) {
 	  	            	  p.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(di + posX + posY + posZ));
-	  	            	if (p.getInventory().getItemInMainHand().getType().equals(Material.OBSIDIAN) || 
-		  	            		  p.getInventory().getItemInOffHand().getType().equals(Material.OBSIDIAN)) {
-		  	            	  p.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(posX + posY
-		  	            			  + posZ + " > " + netherX + netherY + netherZ));
-	  	            	}
 	  	              }
 	                }
 			}

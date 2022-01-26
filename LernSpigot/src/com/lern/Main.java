@@ -12,6 +12,7 @@ import com.lern.Tab.WcTab;
 import com.lern.commands.ReCommand;
 import com.lern.gui.WorldConfig;
 import com.lern.more.Coordinate;
+import com.lern.more.NetherCoordinate;
 
 import net.md_5.bungee.api.ChatColor;
 
@@ -20,7 +21,7 @@ public class Main extends JavaPlugin{
 	public void onEnable() {
 		/*===============================================[Logger]===============================================*/
 		getServer().getLogger().info(ChatColor.GREEN + "===============[Plugin]===============");
-		getServer().getLogger().info(ChatColor.GREEN + "- Pligin: Lern Plugin Is Enable!");
+		getServer().getLogger().info(ChatColor.GREEN + "- Plugin: Lern Plugin Is Enable!");
 		getServer().getLogger().info(ChatColor.GREEN + "- Version: " + Bukkit.getVersion());
 		getServer().getLogger().info(ChatColor.GREEN + "- Max Player: " + Bukkit.getMaxPlayers());
 		getServer().getLogger().info(ChatColor.GREEN + "- Max View Distance: " + Bukkit.getViewDistance());
@@ -38,6 +39,7 @@ public class Main extends JavaPlugin{
 		getCommand("r").setExecutor(new ReCommand());
 		/*===============================================[Mores]===============================================*/
 		new Coordinate().coordiante(this);
+		new NetherCoordinate().onLoop(this);
 		
 	}
 }
