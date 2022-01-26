@@ -39,7 +39,7 @@ public class Coordinate{
             return "West";
         }
         if (292.5 <= rotation && rotation < 337.5) {
-            return "NorthWast";
+            return "NorthWeSst";
         }
         if (337.5 <= rotation && rotation < 360.0) {
             return "North";
@@ -64,11 +64,19 @@ public class Coordinate{
 	  	              	String posX = "" + ChatColor.BOLD + ChatColor.GOLD + "X: " + ChatColor.BOLD + x + " ";
 	  	              	String posY = "" + ChatColor.BOLD + ChatColor.GOLD + "Y: " + ChatColor.BOLD + y + " ";
 	  	              	String posZ = "" + ChatColor.BOLD + ChatColor.GOLD + "Z: " + ChatColor.BOLD + z + " ";
+	  	              	
+	  	              	int netherX = x / 8;
+	  	              	int netherY = y / 8;
+	  	              	int netherZ = z / 8;
 	  	              
 	  	              	if (p.getInventory().getItemInMainHand().getType().equals(Material.COMPASS) || 
 	  	            		  p.getInventory().getItemInOffHand().getType().equals(Material.COMPASS)) {
 	  	            	  p.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(di + posX + posY + posZ));
-	  	            	  
+	  	            	if (p.getInventory().getItemInMainHand().getType().equals(Material.OBSIDIAN) || 
+		  	            		  p.getInventory().getItemInOffHand().getType().equals(Material.OBSIDIAN)) {
+		  	            	  p.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(posX + posY
+		  	            			  + posZ + " > " + netherX + netherY + netherZ));
+	  	            	}
 	  	              }
 	                }
 			}
