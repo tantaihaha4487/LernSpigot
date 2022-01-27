@@ -298,7 +298,7 @@ public class WorldConfig implements CommandExecutor, Listener{
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String ladel, String[] args) {
 		if(cmd.getName().equalsIgnoreCase("wc")) {
-			if(args.length == 0l) {
+			if(args.length == 0) {
 				Player p = (Player) sender;
 				p.openInventory(worldconfig());
 			}
