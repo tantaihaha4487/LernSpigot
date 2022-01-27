@@ -39,7 +39,7 @@ public class Coordinate{
             return "West";
         }
         if (292.5 <= rotation && rotation < 337.5) {
-            return "NorthWeSst";
+            return "NorthWest";
         }
         if (337.5 <= rotation && rotation < 360.0) {
             return "North";
