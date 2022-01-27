@@ -29,7 +29,7 @@ public class NetherCoordinate {
   	              	int netherX = x / 8;
   	              	int netherY = y / 8;
   	              	int netherZ = z / 8;
-  	              	
+
   	              	String Emoji = ChatColor.DARK_PURPLE + "> ";
   	              	
   	            	if (p.getInventory().getItemInMainHand().getType().equals(Material.OBSIDIAN) || 
