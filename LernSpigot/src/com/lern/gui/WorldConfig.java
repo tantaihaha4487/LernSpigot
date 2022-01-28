@@ -1,6 +1,7 @@
 package com.lern.gui;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.bukkit.Bukkit;
@@ -17,13 +18,40 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.player.PlayerChatEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.scheduler.BukkitScheduler;
+
+import com.lern.Main;
 
 public class WorldConfig implements CommandExecutor, Listener{
+	public HashMap<String, Integer> CustomTimeTask = new HashMap<>();
+	public HashMap<String, Integer> addTask = new HashMap<>();
+	private Main Plugin;
+	/*===============================================[Custom Time Options]===============================================*/
+	//cussom time options
+	@EventHandler
+	public void onChatCustomTime(PlayerChatEvent e) {
+		Player p = e.getPlayer();
+		String Chat = e.getMessage();
+		String msg =  ChatColor.YELLOW + "[" + ChatColor.RED + "!" + ChatColor.YELLOW + "] " + ChatColor.GREEN;
+		if(addTask.get("run") == 1) {
+			try {
+				int time = Integer.parseInt(Chat);
+				CustomTimeTask.put("Task", time);
+				p.getLocation().getWorld().setTime(time);
+				p.sendMessage(msg + ChatColor.GREEN + "time set to" + ChatColor.LIGHT_PURPLE + "(" + time + ")");
+				p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 2, 2);
+				addTask.remove("run");
+			} catch (Exception e2) {
+				p.sendMessage(ChatColor.RED + ChatColor.BOLD.toString() + "Type  only Integer");
+			}
+		}
+	}
 	/*===============================================[Stick Cick Event]===============================================*/
 	//Event
 	@EventHandler
@@ -125,6 +153,7 @@ public class WorldConfig implements CommandExecutor, Listener{
 			case LIME_CONCRETE:
 				p.closeInventory();
 				p.sendMessage(msg + ">>>Enter custom");
+				addTask.put("run", 1);
 				break;
 			case BARRIER:
 				p.openInventory(worldconfig());
@@ -293,6 +322,7 @@ public class WorldConfig implements CommandExecutor, Listener{
 		weather.setItem(8, back);
 		return weather;
 	}
+	
 	/*===============================================[Give Wand Commands]===============================================*/
 	//command
 	@Override
@@ -323,5 +353,4 @@ public class WorldConfig implements CommandExecutor, Listener{
 		}
 		return true;
 	}
-	
 }

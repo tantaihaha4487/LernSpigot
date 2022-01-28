@@ -15,3 +15,6 @@ commands:
    r: 
       description : Reload Server
       usage : /r
+   t: 
+      description : test commands
+      usage : /t

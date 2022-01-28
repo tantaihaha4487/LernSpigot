@@ -38,6 +38,7 @@ public class Main extends JavaPlugin{
 		getCommand("wc").setTabCompleter(new WcTab());
 		getCommand("modewand").setExecutor((CommandExecutor) new ModeChange());
 		getCommand("r").setExecutor(new ReCommand());
+		getCommand("t").setExecutor(new ReCommand());
 		/*===============================================[Mores]===============================================*/
 		new Coordinate().coordiante(this);
 		new NetherCoordinate().onLoop(this);
