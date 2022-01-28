@@ -12,6 +12,7 @@ import com.lern.Tab.WcTab;
 import com.lern.commands.ReCommand;
 import com.lern.gui.WorldConfig;
 import com.lern.more.Coordinate;
+import com.lern.more.ItemListener;
 import com.lern.more.NetherCoordinate;
 
 import net.md_5.bungee.api.ChatColor;
@@ -40,6 +41,7 @@ public class Main extends JavaPlugin{
 		/*===============================================[Mores]===============================================*/
 		new Coordinate().coordiante(this);
 		new NetherCoordinate().onLoop(this);
+		new ItemListener(this);
 		
 	}
 }
