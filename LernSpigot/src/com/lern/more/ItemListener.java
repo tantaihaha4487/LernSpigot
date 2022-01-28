@@ -13,6 +13,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.inventory.InventoryAction;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.player.PlayerBucketEmptyEvent;
 import org.bukkit.event.player.PlayerBucketFillEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -132,7 +133,26 @@ public class ItemListener extends BasicItem implements Listener{
 	   }
 
 	   @EventHandler
-	   public void onBucketFill(final PlayerBucketFillEvent e) {
+	   public void onBucketFill(PlayerBucketFillEvent e) {
+	      if (!e.isCancelled()) {
+	         final Player p = e.getPlayer();
+	         final ItemStack itemuse = p.getInventory().getItemInMainHand().clone();
+	         final int itemslot = p.getInventory().getHeldItemSlot();
+	         (new BukkitRunnable() {
+	            public void run() {
+	               if (p.getInventory().getItemInMainHand().equals(e.getItemStack())) {
+	                  ItemListener.this.setBucket(p, itemslot, itemuse, true, true);
+	               } else if (p.getInventory().getItemInOffHand().equals(e.getItemStack())) {
+	                  ItemListener.this.setBucket(p, itemslot, itemuse, true, false);
+	               }
+
+	            }
+	         }).runTaskLater(this.core, 1L);
+	      }
+
+	   }
+	   @EventHandler
+	   public void onBucketEmpty(PlayerBucketEmptyEvent e) {
 	      if (!e.isCancelled()) {
 	         final Player p = e.getPlayer();
 	         final ItemStack itemuse = p.getInventory().getItemInMainHand().clone();

@@ -19,6 +19,11 @@ public class ReCommand implements CommandExecutor{
 		if(cmd.getName().equalsIgnoreCase("r")) {
 			Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "reload confirm");
 			sender.sendMessage(ChatColor.GOLD + ChatColor.BOLD.toString() + "Reload Complete!!");
+			
+		}
+		if(cmd.getName().equals("t")) {
+			p.sendMessage("Test => " + p.getUniqueId());
+			
 		}
 		return true;
 	}
