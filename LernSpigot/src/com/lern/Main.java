@@ -43,6 +43,5 @@ public class Main extends JavaPlugin{
 		new Coordinate().coordiante(this);
 		new NetherCoordinate().onLoop(this);
 		new ItemListener(this);
-		
 	}
 }

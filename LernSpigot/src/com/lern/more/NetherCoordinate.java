@@ -54,8 +54,6 @@ public class NetherCoordinate {
 					
 				}
 				
-				
-				
 			}
 		}, 0, 5L);
 	}

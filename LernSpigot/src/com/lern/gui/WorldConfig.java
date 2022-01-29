@@ -338,7 +338,6 @@ public class WorldConfig implements CommandExecutor, Listener{
 					ItemStack stick = new ItemStack(Material.STICK);
 					ItemMeta stickmeta = stick.getItemMeta();
 					stickmeta.setDisplayName(ChatColor.AQUA + "World Config Wand");
-					
 					List<String> lore = new ArrayList<>();
 					lore.add(ChatColor.LIGHT_PURPLE + "Right Cick For Open World Config GUI");
 					stickmeta.setLore(lore);
