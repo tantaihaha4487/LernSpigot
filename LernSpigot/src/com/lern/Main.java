@@ -11,6 +11,7 @@ import com.lern.Items.ModeChange;
 import com.lern.Tab.WcTab;
 import com.lern.commands.ReCommand;
 import com.lern.gui.WorldConfig;
+import com.lern.gui.statasBossBar;
 import com.lern.more.Coordinate;
 import com.lern.more.ItemListener;
 import com.lern.more.NetherCoordinate;
@@ -39,9 +40,14 @@ public class Main extends JavaPlugin{
 		getCommand("modewand").setExecutor((CommandExecutor) new ModeChange());
 		getCommand("r").setExecutor(new ReCommand());
 		getCommand("t").setExecutor(new ReCommand());
+		getCommand("setbar").setExecutor(new statasBossBar());
+		getCommand("removebar").setExecutor(new statasBossBar());
 		/*===============================================[Mores]===============================================*/
 		new Coordinate().coordiante(this);
 		new NetherCoordinate().onLoop(this);
 		new ItemListener(this);
+		new statasBossBar();
+		statasBossBar.onPlayerOnline(this);
+		
 	}
 }

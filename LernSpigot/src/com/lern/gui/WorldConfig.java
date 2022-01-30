@@ -44,11 +44,11 @@ public class WorldConfig implements CommandExecutor, Listener{
 				int time = Integer.parseInt(Chat);
 				CustomTimeTask.put("Task", time);
 				p.getLocation().getWorld().setTime(time);
-				p.sendMessage(msg + ChatColor.GREEN + "time set to" + ChatColor.LIGHT_PURPLE + "(" + time + ")");
+				p.sendMessage(msg + ChatColor.GREEN + "time set to " + ChatColor.LIGHT_PURPLE + "(" + time + ")");
 				p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 2, 2);
 				addTask.remove("run");
 			} catch (Exception e2) {
-				p.sendMessage(ChatColor.RED + ChatColor.BOLD.toString() + "Type  only Integer");
+				p.sendMessage(ChatColor.RED + ChatColor.BOLD.toString() + "Type only Integer!, Try again..");
 			}
 		}
 	}
