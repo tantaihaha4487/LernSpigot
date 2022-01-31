@@ -9,6 +9,7 @@ import com.lern.Event.ItemFrameHide;
 import com.lern.Event.OnPlayerJoin;
 import com.lern.Items.ModeChange;
 import com.lern.Tab.WcTab;
+import com.lern.Tab.statasTab;
 import com.lern.commands.ReCommand;
 import com.lern.gui.WorldConfig;
 import com.lern.gui.statasBossBar;
@@ -42,6 +43,7 @@ public class Main extends JavaPlugin{
 		getCommand("t").setExecutor(new ReCommand());
 		getCommand("setbar").setExecutor(new statasBossBar());
 		getCommand("removebar").setExecutor(new statasBossBar());
+		getCommand("setbar").setTabCompleter(new statasTab());
 		/*===============================================[Mores]===============================================*/
 		new Coordinate().coordiante(this);
 		new NetherCoordinate().onLoop(this);
