@@ -28,6 +28,8 @@ import org.bukkit.scheduler.BukkitScheduler;
 
 import com.lern.Main;
 
+import com.lern.Main;
+
 public class WorldConfig implements CommandExecutor, Listener{
 	public HashMap<String, Integer> CustomTimeTask = new HashMap<>();
 	public HashMap<String, Integer> addTask = new HashMap<>();
