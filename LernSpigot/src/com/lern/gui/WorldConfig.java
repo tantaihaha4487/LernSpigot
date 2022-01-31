@@ -41,6 +41,7 @@ public class WorldConfig implements CommandExecutor, Listener{
 		Player p = e.getPlayer();
 		String Chat = e.getMessage();
 		String msg =  ChatColor.YELLOW + "[" + ChatColor.RED + "!" + ChatColor.YELLOW + "] " + ChatColor.GREEN;
+		if(!(addTask.get("run") == 1)) return;
 		if(addTask.get("run") == 1) {
 			try {
 				int time = Integer.parseInt(Chat);
@@ -49,7 +50,7 @@ public class WorldConfig implements CommandExecutor, Listener{
 				p.sendMessage(msg + ChatColor.GREEN + "time set to " + ChatColor.LIGHT_PURPLE + "(" + time + ")");
 				e.setCancelled(true);
 				p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 2, 2);
-				addTask.remove("run");
+				addTask.replace("run", 0);
 			} catch (Exception e2) {
 				p.sendMessage(Chat + ChatColor.RED + ChatColor.BOLD.toString() + " aren't Integer!, Try again..");
 				e.setCancelled(true);
