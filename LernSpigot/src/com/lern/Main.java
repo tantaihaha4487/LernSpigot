@@ -4,6 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import com.lern.Event.DurabilityLowWarn;
 import com.lern.Event.GItemFramehide;
 import com.lern.Event.ItemFrameHide;
 import com.lern.Event.OnPlayerJoin;
@@ -35,6 +36,7 @@ public class Main extends JavaPlugin{
 		getServer().getPluginManager().registerEvents(new OnPlayerJoin(), this);
 		getServer().getPluginManager().registerEvents(new ModeChange(), this);
 		getServer().getPluginManager().registerEvents(new WorldConfig(), this);
+		getServer().getPluginManager().registerEvents(new DurabilityLowWarn(), this);
 		/*===============================================[TCMD]===============================================*/
 		getCommand("wc").setExecutor(new WorldConfig());
 		getCommand("wc").setTabCompleter(new WcTab());
