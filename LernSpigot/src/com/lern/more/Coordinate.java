@@ -68,6 +68,7 @@ public class Coordinate{
 	  	              	int netherX = x / 8;
 	  	              	int netherY = y / 8;
 	  	              	int netherZ = z / 8;
+	  	              	
 	  	              
 	  	              	if (p.getInventory().getItemInMainHand().getType().equals(Material.COMPASS) || 
 	  	            		  p.getInventory().getItemInOffHand().getType().equals(Material.COMPASS)) {

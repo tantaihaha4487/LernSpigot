@@ -52,5 +52,6 @@ public class Main extends JavaPlugin{
 		new statasBossBar();
 		statasBossBar.onPlayerOnline(this);
 		
+		
 	}
 }
