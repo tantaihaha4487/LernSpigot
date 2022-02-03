@@ -7,10 +7,13 @@ import org.bukkit.entity.Player;
 
 public class LowDurabilityCheck {
 	private static void onNearBreak(Player p) {
+		int max = p.getInventory().getItemInHand().getType().getMaxDurability();
+		int durability = p.getItemInHand().getDurability();
+		int now = max - durability- 1;
 		String breakMsg = ChatColor.YELLOW + "[" + ChatColor.RED + "!" + ChatColor.YELLOW + "] " + 
 				ChatColor.BOLD + ChatColor.RED + "Next Time Your Item Will Brea!k";
 		p.playSound(p.getLocation(), Sound.ENTITY_VILLAGER_NO, 1, 1);
-		sendMessage.sendActionBar(p, breakMsg);
+		sendMessage.sendActionBar(p, breakMsg + " " + ChatColor.LIGHT_PURPLE + "(" + now + ")");
 	}
 	
 	public static void onCheckAxe(Player p) {
@@ -27,7 +30,7 @@ public class LowDurabilityCheck {
 			if(now < 10 && now != 0) {
 				sendMessage.sendActionBar(p, message);	
 			}
-			if(now < 2) {
+			if(now < 2 && now != 0) {
 				onNearBreak(p);
 			}
 		}
@@ -36,7 +39,7 @@ public class LowDurabilityCheck {
 			if(now < 10 && now != 0) {
 				sendMessage.sendActionBar(p, message);
 			}
-			if(now < 2) {
+			if(now < 2 && now != 0) {
 				onNearBreak(p);
 			}
 		}
@@ -45,7 +48,7 @@ public class LowDurabilityCheck {
 			if(now < 10 && now != 0) {
 				sendMessage.sendActionBar(p, message);
 			}
-			if(now < 2) {
+			if(now < 2 && now != 0) {
 				onNearBreak(p);
 			}
 		}
@@ -63,7 +66,7 @@ public class LowDurabilityCheck {
 			if(now < 10 && now != 0) {
 				sendMessage.sendActionBar(p, message);
 			}
-			if(now < 2) {
+			if(now < 2 && now != 0) {
 				onNearBreak(p);
 			}
 		}
@@ -72,7 +75,7 @@ public class LowDurabilityCheck {
 			if(now < 10 && now != 0) {
 				sendMessage.sendActionBar(p, message);
 			}
-			if(now < 2) {
+			if(now < 2 && now != 0) {
 				onNearBreak(p);
 			}
 		}
@@ -91,7 +94,7 @@ public class LowDurabilityCheck {
 			if(now < 10 && now != 0) {
 				sendMessage.sendActionBar(p, message);	
 			}
-			if(now < 2) {
+			if(now < 2 && now != 0) {
 				onNearBreak(p);
 			}
 		}
@@ -100,7 +103,7 @@ public class LowDurabilityCheck {
 			if(now < 10 && now != 0) {
 				sendMessage.sendActionBar(p, message);
 			}
-			if(now < 2) {
+			if(now < 2 && now != 0) {
 				onNearBreak(p);
 			}
 		}
@@ -109,7 +112,7 @@ public class LowDurabilityCheck {
 			if(now < 10 && now != 0) {
 				sendMessage.sendActionBar(p, message);
 			}
-			if(now < 2) {
+			if(now < 2 && now != 0) {
 				onNearBreak(p);
 			}
 		}
@@ -118,7 +121,7 @@ public class LowDurabilityCheck {
 			if(now < 10 && now != 0) {
 				sendMessage.sendActionBar(p, message);
 			}
-			if(now < 2) {
+			if(now < 2 && now != 0) {
 				onNearBreak(p);
 			}
 		}
@@ -127,7 +130,7 @@ public class LowDurabilityCheck {
 			if(now < 10 && now != 0) {
 				sendMessage.sendActionBar(p, message);
 			}
-			if(now < 2) {
+			if(now < 2 && now != 0) {
 				onNearBreak(p);
 			}
 		}
@@ -136,7 +139,7 @@ public class LowDurabilityCheck {
 			if(now < 10 && now != 0) {
 				sendMessage.sendActionBar(p, message);
 			}
-			if(now < 2) {
+			if(now < 2 && now != 0) {
 				onNearBreak(p);
 			}
 		}

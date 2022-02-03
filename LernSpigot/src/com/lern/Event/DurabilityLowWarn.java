@@ -13,6 +13,16 @@ public class DurabilityLowWarn implements Listener{
 		Player p = e.getPlayer();
 		LowDurabilityCheck.onCheckAxe(p);
 		LowDurabilityCheck.onCheckHoe(p);
+		
+		/*
+		int max = p.getInventory().getItemInHand().getType().getMaxDurability();
+		int durability = p.getItemInHand().getDurability();
+		int now = max - durability - 1;
+		String message = ChatColor.YELLOW + "[" + ChatColor.RED + "!" + ChatColor.YELLOW + "] "
+				+ ChatColor.AQUA + "Your Durability is Low " +
+				ChatColor.LIGHT_PURPLE + "(" + now +")" ;
+		sendMessage.sendActionBar(p, message);	
+		*/
 			
 	}
 }
