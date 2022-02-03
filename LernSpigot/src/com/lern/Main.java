@@ -46,6 +46,7 @@ public class Main extends JavaPlugin{
 		getCommand("setbar").setExecutor(new statasBossBar());
 		getCommand("removebar").setExecutor(new statasBossBar());
 		getCommand("setbar").setTabCompleter(new statasTab());
+		
 
 		/*===============================================[Mores]===============================================*/
 		new Coordinate().coordiante(this);
