@@ -1,11 +1,15 @@
 package com.lern.utils;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 
 public class LowDurabilityCheck {
+	/*===============================================[Variable]===============================================*/
 	private static void onNearBreak(Player p) {
 		int max = p.getInventory().getItemInHand().getType().getMaxDurability();
 		int durability = p.getItemInHand().getDurability();
@@ -15,7 +19,7 @@ public class LowDurabilityCheck {
 		p.playSound(p.getLocation(), Sound.ENTITY_VILLAGER_NO, 1, 1);
 		sendMessage.sendActionBar(p, breakMsg);
 	}
-	
+	/*===============================================[Axe Check]===============================================*/
 	public static void onCheckAxe(Player p) {
 		int max = p.getInventory().getItemInHand().getType().getMaxDurability();
 		int durability = p.getItemInHand().getDurability();
@@ -80,6 +84,7 @@ public class LowDurabilityCheck {
 			}
 		}
 	}
+	/*===============================================[Hoe Check]===============================================*/
 	public static void onCheckHoe(Player p) {
 		int max = p.getInventory().getItemInHand().getType().getMaxDurability();
 		int durability = p.getItemInHand().getDurability();

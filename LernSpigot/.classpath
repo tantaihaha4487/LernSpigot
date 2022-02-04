@@ -6,7 +6,6 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="D:/games/Minecraft/lib/BuildTool/Spigot/Spigot-API/target/spigot-api-1.18.1-R0.1-SNAPSHOT-shaded.jar"/>
-	<classpathentry kind="lib" path="D:/games/Minecraft/lib/BuildTool/Spigot/Spigot-API/src"/>
+	<classpathentry exported="true" kind="lib" path="D:/games/Minecraft/lib/spigot-api-1.18.1-R0.1-SNAPSHOT-shaded.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
