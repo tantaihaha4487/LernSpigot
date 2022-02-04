@@ -10,10 +10,10 @@ public class LowDurabilityCheck {
 		int max = p.getInventory().getItemInHand().getType().getMaxDurability();
 		int durability = p.getItemInHand().getDurability();
 		int now = max - durability- 1;
-		String breakMsg = ChatColor.YELLOW + "[" + ChatColor.RED + "!" + ChatColor.YELLOW + "] " + 
-				ChatColor.BOLD + ChatColor.RED + "Next Time Your Item Will Brea!k";
+		String breakMsg = ChatColor.YELLOW .toString() + ChatColor.BOLD +  "[" + "WARN" + "] " + 
+				 ChatColor.RED + ChatColor.BOLD +"Your Item Near Break";
 		p.playSound(p.getLocation(), Sound.ENTITY_VILLAGER_NO, 1, 1);
-		sendMessage.sendActionBar(p, breakMsg + " " + ChatColor.LIGHT_PURPLE + "(" + now + ")");
+		sendMessage.sendActionBar(p, breakMsg);
 	}
 	
 	public static void onCheckAxe(Player p) {
