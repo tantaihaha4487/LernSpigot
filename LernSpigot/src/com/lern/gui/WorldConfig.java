@@ -92,6 +92,10 @@ public class WorldConfig implements CommandExecutor, Listener{
 				p.closeInventory();
 				p.playSound(loc, Sound.UI_BUTTON_CLICK, 1, 1);
 				break;
+			case PLAYER_HEAD:
+				p.openInventory(playerconfig());
+				p.playSound(loc, Sound.UI_BUTTON_CLICK, 1, 1);
+				break;
 			}
 		}
 		/*===============================================[Weather Inventory Options]===============================================*/
@@ -167,6 +171,15 @@ public class WorldConfig implements CommandExecutor, Listener{
 				break;
 			}
 		}
+		/*===============================================[Player Option]===============================================*/
+		if(e.getView().getTitle().equals( ChatColor.AQUA + "Player ConFig")) {
+			switch (e.getCurrentItem().getType()) {
+			case BARRIER:
+				p.openInventory(worldconfig());
+				p.playSound(loc, Sound.ENTITY_ENDERMAN_TELEPORT, 2, 1);
+				break;
+			}
+		}
 	}
 	
 	/*===============================================[Main Inventory]===============================================*/
@@ -188,6 +201,16 @@ public class WorldConfig implements CommandExecutor, Listener{
 		loreweather.add(ChatColor.LIGHT_PURPLE + "Set Weather in your world");
 		lightmeta.setLore(loreweather);
 		light.setItemMeta(lightmeta);
+		
+		//Player config
+		ItemStack Head = new ItemStack(Material.PLAYER_HEAD);
+		ItemMeta HeadMeta = Head.getItemMeta();
+		HeadMeta.setDisplayName(ChatColor.AQUA + "Player Config");
+		List<String> loreh = new ArrayList<>();
+		loreh.add(ChatColor.LIGHT_PURPLE + "Player Congiguration");
+		HeadMeta.setLore(loreh);
+		Head.setItemMeta(HeadMeta);
+		
 		//back
 		ItemStack back = new ItemStack(Material.BARRIER);
 		ItemMeta backmeta = back.getItemMeta();
@@ -202,6 +225,7 @@ public class WorldConfig implements CommandExecutor, Listener{
 		
 		inv.setItem(2, light);
 		inv.setItem(4, clock);
+		inv.setItem(6, Head);
 		inv.setItem(8, back);
 		return inv;
 	}
@@ -327,6 +351,26 @@ public class WorldConfig implements CommandExecutor, Listener{
 		weather.setItem(5, storm);
 		weather.setItem(8, back);
 		return weather;
+	}
+	/*===============================================[Player Configuration Inventory]===============================================*/
+	public static Inventory playerconfig() {
+		Inventory pi = Bukkit.createInventory(null, 36, ChatColor.AQUA + "Player ConFig");
+		
+		//back
+		ItemStack back = new ItemStack(Material.BARRIER);
+		ItemMeta backmeta = back.getItemMeta();
+		backmeta.setDisplayName("" +ChatColor.RED + ChatColor.BOLD + "< Back");
+		List<String> loreback = new ArrayList<>();
+		loreback.add(ChatColor.LIGHT_PURPLE + "Back to World Config");
+		backmeta.setLore(loreback);
+		backmeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+		backmeta.addEnchant(Enchantment.LUCK, 1, false);
+		backmeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+		back.setItemMeta(backmeta);
+		
+		pi.setItem(31, back);
+				
+		return pi;
 	}
 	
 	/*===============================================[Give Wand Commands]===============================================*/
