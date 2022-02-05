@@ -18,9 +18,3 @@ commands:
    t: 
       description : test commands
       usage : /t
-   setbar: 
-      description : Set Statas Bar
-      usage : /setbar
-   removebar: 
-      description : Remove Statas Bar
-      usage : /removebar

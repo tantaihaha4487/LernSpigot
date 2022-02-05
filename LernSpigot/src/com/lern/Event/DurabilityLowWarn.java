@@ -11,8 +11,15 @@ public class DurabilityLowWarn implements Listener{
 	@EventHandler
 	public void onItemDmg(PlayerItemDamageEvent e) {
 		Player p = e.getPlayer();
+		//main hand
 		LowDurabilityCheck.onCheckAxe(p);
 		LowDurabilityCheck.onCheckHoe(p);
+		LowDurabilityCheck.onCheckPickAxe(p);
+		LowDurabilityCheck.onCheckSword(p);
+		LowDurabilityCheck.onCheckShovel(p);
+		//body
+		LowDurabilityCheck.onCheckHead(p);
+		LowDurabilityCheck.onCheckBody(p);
 		
 		/*
 		int max = p.getInventory().getItemInHand().getType().getMaxDurability();
