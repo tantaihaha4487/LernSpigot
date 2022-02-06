@@ -531,4 +531,122 @@ public class LowDurabilityCheck {
 			sendMessage.sendActionBar(p, ChatColor.RED.toString() + ChatColor.BOLD +"Item Break!");
 		}
 	}
+	/*===============================================[Leg Check]===============================================*/
+	public static void onChecLeg(Player p) {
+		int max = p.getInventory().getLeggings().getType().getMaxDurability();
+		int durability = p.getInventory().getLeggings().getDurability();
+		int now = max - durability- 1;
+		
+		String message = ChatColor.YELLOW + "[" + ChatColor.RED + "!" + ChatColor.YELLOW + "] "
+				+ ChatColor.AQUA + "Your Durability is Low " +
+				ChatColor.LIGHT_PURPLE + "(" + now +")" ;
+		
+		//Chain
+		if(p.getInventory().getChestplate().getType() == Material.CHAINMAIL_LEGGINGS){
+			if(now < 15 && now != 0) {
+				sendMessage.sendActionBar(p, message);
+			}
+			if(now < 2 && now != 0) {
+				onNearBreakLeg(p);
+			}
+		}
+		//Iron
+		if(p.getInventory().getChestplate().getType() == Material.IRON_LEGGINGS){
+			if(now < 15 && now != 0) {
+				sendMessage.sendActionBar(p, message);
+			}
+			if(now < 2 && now != 0) {
+				onNearBreakLeg(p);
+			}
+		}
+		//Diamond
+		if(p.getInventory().getChestplate().getType() == Material.DIAMOND_LEGGINGS){
+			if(now < 15 && now != 0) {
+				sendMessage.sendActionBar(p, message);
+			}
+			if(now < 2 && now != 0) {
+				onNearBreakLeg(p);
+			}
+		}
+		//Netherite
+		if(p.getInventory().getChestplate().getType() == Material.NETHERITE_LEGGINGS){
+			if(now < 15 && now != 0) {
+				sendMessage.sendActionBar(p, message);
+			}
+			if(now < 2 && now != 0) {
+				onNearBreakLeg(p);
+			}
+		}
+		//Golden
+		if(p.getInventory().getChestplate().getType() == Material.GOLDEN_LEGGINGS){
+			if(now < 15 && now != 0) {
+				sendMessage.sendActionBar(p, message);
+			}
+			if(now < 2 && now != 0) {
+				onNearBreakLeg(p);
+			}
+		}
+		if(now == 0) {
+			sendMessage.sendActionBar(p, ChatColor.RED.toString() + ChatColor.BOLD +"Item Break!");
+		}
+	}
+	/*===============================================[Head Check]===============================================*/
+	public static void onCheckFoot(Player p) {
+		int max = p.getInventory().getBoots().getType().getMaxDurability();
+		int durability = p.getInventory().getBoots().getDurability();
+		int now = max - durability- 1;
+		
+		String message = ChatColor.YELLOW + "[" + ChatColor.RED + "!" + ChatColor.YELLOW + "] "
+				+ ChatColor.AQUA + "Your Durability is Low " +
+				ChatColor.LIGHT_PURPLE + "(" + now +")" ;
+		
+		//Chain
+		if(p.getInventory().getChestplate().getType() == Material.CHAINMAIL_BOOTS){
+			if(now < 15 && now != 0) {
+				sendMessage.sendActionBar(p, message);
+			}
+			if(now < 2 && now != 0) {
+				onNearBreakBody(p);
+			}
+		}
+		//Iron
+		if(p.getInventory().getChestplate().getType() == Material.IRON_BOOTS){
+			if(now < 15 && now != 0) {
+				sendMessage.sendActionBar(p, message);
+			}
+			if(now < 2 && now != 0) {
+				onNearBreakBody(p);
+			}
+		}
+		//Diamond
+		if(p.getInventory().getChestplate().getType() == Material.DIAMOND_BOOTS){
+			if(now < 15 && now != 0) {
+				sendMessage.sendActionBar(p, message);
+			}
+			if(now < 2 && now != 0) {
+				onNearBreakBody(p);
+			}
+		}
+		//Netherite
+		if(p.getInventory().getChestplate().getType() == Material.NETHERITE_BOOTS){
+			if(now < 15 && now != 0) {
+				sendMessage.sendActionBar(p, message);
+			}
+			if(now < 2 && now != 0) {
+				onNearBreakBody(p);
+			}
+		}
+		//Golden
+		if(p.getInventory().getChestplate().getType() == Material.GOLDEN_BOOTS){
+			if(now < 15 && now != 0) {
+				sendMessage.sendActionBar(p, message);
+			}
+			if(now < 2 && now != 0) {
+				onNearBreakBody(p);
+			}
+		}
+		if(now == 0) {
+			sendMessage.sendActionBar(p, ChatColor.RED.toString() + ChatColor.BOLD +"Item Break!");
+		}
+	}
 }
