@@ -35,7 +35,7 @@ public class DurabilityLowWarn implements Listener{
 			}
 				else {}
 			if(p.getInventory().getLeggings().getType() == slot) {
-				LowDurabilityCheck.onChecLeg(p);
+				LowDurabilityCheck.onCheckLeg(p);
 				
 			}
 			else {}

@@ -532,7 +532,7 @@ public class LowDurabilityCheck {
 		}
 	}
 	/*===============================================[Leg Check]===============================================*/
-	public static void onChecLeg(Player p) {
+	public static void onCheckLeg(Player p) {
 		int max = p.getInventory().getLeggings().getType().getMaxDurability();
 		int durability = p.getInventory().getLeggings().getDurability();
 		int now = max - durability- 1;

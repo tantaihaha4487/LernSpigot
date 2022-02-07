@@ -9,7 +9,9 @@ import com.lern.Event.GItemFramehide;
 import com.lern.Event.ItemFrameHide;
 import com.lern.Event.OnPlayerJoin;
 import com.lern.Items.ModeChange;
+import com.lern.Tab.LocatePlayerTab;
 import com.lern.Tab.WcTab;
+import com.lern.commands.LocatePlayer;
 import com.lern.commands.ReCommand;
 import com.lern.gui.WorldConfig; 
 import com.lern.more.Coordinate;
@@ -34,13 +36,16 @@ public class Main extends JavaPlugin{
 		getServer().getPluginManager().registerEvents(new OnPlayerJoin(), this);
 		getServer().getPluginManager().registerEvents(new ModeChange(), this);
 		getServer().getPluginManager().registerEvents(new WorldConfig(), this);
-		getServer().getPluginManager().registerEvents(new DurabilityLowWarn(), this);
+		//getServer().getPluginManager().registerEvents(new DurabilityLowWarn(), this); //disable is bug
+		
 		/*===============================================[TCMD]===============================================*/
 		getCommand("wc").setExecutor(new WorldConfig());
 		getCommand("wc").setTabCompleter(new WcTab());
 		getCommand("modewand").setExecutor((CommandExecutor) new ModeChange());
 		getCommand("r").setExecutor(new ReCommand());
 		getCommand("t").setExecutor(new ReCommand());
+		getCommand("locateplayer").setExecutor(new LocatePlayer());
+		getCommand("locateplayer").setTabCompleter(new LocatePlayerTab());
 		/*===============================================[Mores]===============================================*/
 		new Coordinate().coordiante(this);
 		new NetherCoordinate().onLoop(this);
