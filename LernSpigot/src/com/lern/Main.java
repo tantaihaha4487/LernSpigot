@@ -4,7 +4,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import com.lern.Event.DurabilityLowWarn;
 import com.lern.Event.GItemFramehide;
 import com.lern.Event.ItemFrameHide;
 import com.lern.Event.OnPlayerJoin;
@@ -50,6 +49,7 @@ public class Main extends JavaPlugin{
 		new Coordinate().coordiante(this);
 		new NetherCoordinate().onLoop(this);
 		new ItemListener(this);
-		
+		new LocatePlayer();
+		LocatePlayer.onRun(this);
 	}
 }

@@ -16,7 +16,7 @@ public class LocatePlayerTab implements TabCompleter{
 		if(cmd.getName().equals("locateplayer")) {
 					if(args[0].length() == 0) {
 						List<String> sub2 = new ArrayList<>();
-						sub2.add("setbar");
+						sub2.add("addbar");
 						sub2.add("removebar");
 						sub2.add("sendLocation");
 						sub2.add("<PlayerName>");

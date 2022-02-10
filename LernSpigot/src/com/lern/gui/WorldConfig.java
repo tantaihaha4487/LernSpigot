@@ -35,7 +35,7 @@ public class WorldConfig implements CommandExecutor, Listener{
 	public HashMap<String, Integer> addTask = new HashMap<>();
 	private Main Plugin;
 	/*===============================================[Custom Time Options]===============================================*/
-	//cussom time options
+	//custom time options
 	@EventHandler
 	public void onChatCustomTime(PlayerChatEvent e) {
 		Player p = e.getPlayer();
@@ -354,7 +354,7 @@ public class WorldConfig implements CommandExecutor, Listener{
 	}
 	/*===============================================[Player Configuration Inventory]===============================================*/
 	public static Inventory playerconfig() {
-		Inventory pi = Bukkit.createInventory(null, 36, ChatColor.AQUA + "Player ConFig");
+		Inventory pi = Bukkit.createInventory(null, 9, ChatColor.AQUA + "Player ConFig");
 		
 		//back
 		ItemStack back = new ItemStack(Material.BARRIER);
@@ -368,7 +368,7 @@ public class WorldConfig implements CommandExecutor, Listener{
 		backmeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 		back.setItemMeta(backmeta);
 		
-		pi.setItem(31, back);
+		pi.setItem(8, back);
 				
 		return pi;
 	}
