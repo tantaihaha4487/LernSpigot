@@ -86,7 +86,7 @@ public class LocatePlayer implements CommandExecutor{
 		
 		String targetName = target.getName(); 
 		
-		bar.setTitle(ChatColor.AQUA + targetName + " " + ChatColor.GREEN + EnviName(target) + ChatColor.GOLD + " X: " + tx + " Y: " + " Z: " + tz);
+		bar.setTitle(ChatColor.AQUA + targetName + " " + ChatColor.GREEN + "[" + EnviName(target) + "]" + ChatColor.GOLD + " X: " + tx + " Y: " + " Z: " + tz);
 		
 		
 	}

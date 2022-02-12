@@ -6,10 +6,11 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import com.lern.Event.GItemFramehide;
 import com.lern.Event.ItemFrameHide;
-import com.lern.Event.OnPlayerJoin;
+import com.lern.Event.onPlayerJoin;
 import com.lern.Items.ModeChange;
 import com.lern.Tab.LocatePlayerTab;
 import com.lern.Tab.WcTab;
+import com.lern.commands.HidePlayer;
 import com.lern.commands.LocatePlayer;
 import com.lern.commands.ReCommand;
 import com.lern.gui.WorldConfig; 
@@ -32,7 +33,7 @@ public class Main extends JavaPlugin{
 		/*===============================================[Event]===============================================*/
 		getServer().getPluginManager().registerEvents(new ItemFrameHide(), this);
 		getServer().getPluginManager().registerEvents(new GItemFramehide(), this);
-		getServer().getPluginManager().registerEvents(new OnPlayerJoin(), this);
+		getServer().getPluginManager().registerEvents(new onPlayerJoin(this), this);
 		getServer().getPluginManager().registerEvents(new ModeChange(), this);
 		getServer().getPluginManager().registerEvents(new WorldConfig(), this);
 		//getServer().getPluginManager().registerEvents(new DurabilityLowWarn(), this); //disable is bug
@@ -43,13 +44,14 @@ public class Main extends JavaPlugin{
 		getCommand("modewand").setExecutor((CommandExecutor) new ModeChange());
 		getCommand("r").setExecutor(new ReCommand());
 		getCommand("t").setExecutor(new ReCommand());
-		getCommand("locateplayer").setExecutor(new LocatePlayer());
-		getCommand("locateplayer").setTabCompleter(new LocatePlayerTab());
+		//getCommand("locateplayer").setExecutor(new LocatePlayer());
+		//getCommand("locateplayer").setTabCompleter(new LocatePlayerTab());
+		//getCommand("hide").setExecutor(new HidePlayer(this)); bug
 		/*===============================================[Mores]===============================================*/
 		new Coordinate().coordiante(this);
 		new NetherCoordinate().onLoop(this);
 		new ItemListener(this);
-		new LocatePlayer();
-		LocatePlayer.onRun(this);
+		//new LocatePlayer();
+		//LocatePlayer.onRun(this); disable is bug
 	}
 }

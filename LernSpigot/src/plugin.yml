@@ -21,3 +21,6 @@ commands:
    locateplayer:
       description: Use for locate Player
       usage: /loacteplayer <Action> <Value>
+   hide:
+       description: hide your self form ahother player
+       useage: /hide
