@@ -18,8 +18,8 @@ public class LocatePlayerTab implements TabCompleter{
 						List<String> sub2 = new ArrayList<>();
 						sub2.add("addbar");
 						sub2.add("removebar");
-						sub2.add("sendLocation");
-						sub2.add("<PlayerName>");
+						//sub2.add("sendLocation");
+						//sub2.add("<PlayerName>");
 						
 						List<Player> PlayerList = (List<Player>) Bukkit.getServer().getOnlinePlayers();
 						for(int i = 0; i < PlayerList.size(); i++) {

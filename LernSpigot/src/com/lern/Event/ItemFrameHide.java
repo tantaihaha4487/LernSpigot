@@ -15,23 +15,25 @@ public class ItemFrameHide implements Listener{
 	@EventHandler
 	public void OnCick(PlayerInteractAtEntityEvent e) {
 		Player p = e.getPlayer();
-		ItemFrame item = (ItemFrame) e.getRightClicked();
-		String msg = "" + ChatColor.GOLD + ChatColor.BOLD + "(" +
-				ChatColor.YELLOW + ChatColor.BOLD + "i" +
-				ChatColor.GOLD + ChatColor.BOLD + ") " +
-				ChatColor.GREEN + ChatColor.BOLD + "Set Item Frame to ";
-		if(!p.isSneaking()) return;
-		if(e.getRightClicked().getType().equals(EntityType.ITEM_FRAME)) {
-			if(item.isVisible() == true) {
-				item.setVisible(false);
-				p.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(msg + "Hide"));
-			}
-			else if (item.isVisible() == false) {
-				item.setVisible(true);
-				p.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(msg + "Show"));
+		if(e.getRightClicked().getType() == EntityType.ITEM_FRAME) {
+			ItemFrame item = (ItemFrame) e.getRightClicked();
+			String msg = "" + ChatColor.GOLD + ChatColor.BOLD + "(" +
+					ChatColor.YELLOW + ChatColor.BOLD + "i" +
+					ChatColor.GOLD + ChatColor.BOLD + ") " +
+					ChatColor.GREEN + ChatColor.BOLD + "Set Item Frame to ";
+			if(!p.isSneaking()) return;
+			if(e.getRightClicked().getType().equals(EntityType.ITEM_FRAME)) {
+				if(item.isVisible() == true) {
+					item.setVisible(false);
+					p.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(msg + "Hide"));
+				}
+				else if (item.isVisible() == false) {
+					item.setVisible(true);
+					p.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(msg + "Show"));
+					
+				}
 				
 			}
-			
-		}
+		}	
 	}
 }

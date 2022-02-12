@@ -44,8 +44,8 @@ public class Main extends JavaPlugin{
 		getCommand("modewand").setExecutor((CommandExecutor) new ModeChange());
 		getCommand("r").setExecutor(new ReCommand());
 		getCommand("t").setExecutor(new ReCommand());
-		//getCommand("locateplayer").setExecutor(new LocatePlayer());
-		//getCommand("locateplayer").setTabCompleter(new LocatePlayerTab());
+		getCommand("locateplayer").setExecutor(new LocatePlayer());
+		getCommand("locateplayer").setTabCompleter(new LocatePlayerTab());
 		//getCommand("hide").setExecutor(new HidePlayer(this)); bug
 		/*===============================================[Mores]===============================================*/
 		new Coordinate().coordiante(this);

@@ -28,10 +28,10 @@ public class onPlayerJoin implements Listener{
 				p.getName() + ChatColor.LIGHT_PURPLE + ChatColor.BOLD + " to TantaiHaha Server"; 
 		p.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(msg));
 		p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 2, 2);
-		for(int i = 0; i < HidePlayer.invisible_list.size(); i++) {
+		/*for(int i = 0; i < HidePlayer.invisible_list.size(); i++) {
 			p.hidePlayer(plugin, HidePlayer.invisible_list.get(i));
 			
-		}
+		}*/
 		
 		
 	}
