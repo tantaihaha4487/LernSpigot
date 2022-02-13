@@ -20,9 +20,9 @@ import com.lern.Main;
 
 
 public class LocatePlayer implements CommandExecutor{
-	private static BossBar bar = Bukkit.createBossBar("Locate Player", BarColor.WHITE, BarStyle.SOLID, BarFlag.DARKEN_SKY);
+	public static BossBar bar = Bukkit.createBossBar("Locate Player", BarColor.WHITE, BarStyle.SOLID, BarFlag.DARKEN_SKY);
 	private static HashMap<String, Integer> LoopTask = new HashMap<>(); //0 disable || 1 Enable
-	private static HashMap<String, Player> nameTask = new HashMap<>(); 
+	public static HashMap<String, Player> nameTask = new HashMap<>(); 
 	
 	
 	@Override
@@ -47,7 +47,7 @@ public class LocatePlayer implements CommandExecutor{
 						p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 5, 1);
 						bar.addPlayer(p);
 						LoopTask.replace("Run", 1);
-						nameTask.put("target", t);
+						nameTask.replace("target", t);
 					} catch (Exception e) {
 						p.sendMessage(ChatColor.RED.toString() + ChatColor.BOLD + "Error! Try /locateplayer addbar <PlayerName>");
 					}
@@ -56,7 +56,7 @@ public class LocatePlayer implements CommandExecutor{
 				if(args[0].equalsIgnoreCase("removebar")) {
 					bar.removePlayer(p);
 					LoopTask.replace("Run", 0);
-					nameTask.remove("target");
+					nameTask.replace("target", null);
 				}	
 			}
 		}
@@ -68,11 +68,12 @@ public class LocatePlayer implements CommandExecutor{
 				
 				@Override
 				public void run() {
-					if(LoopTask.get("Run") == 1) {
-						Player tName = nameTask.get("target");
+					if(nameTask.get("target") != null) {
 						if(LoopTask.get("Run") == 1) {
-							onLoop();
+							Player tName = nameTask.get("target");
+								onLoop();
 					}
+						
 				}
 			}
 		}, 0, 5L);
@@ -86,7 +87,8 @@ public class LocatePlayer implements CommandExecutor{
 		
 		String targetName = target.getName(); 
 		
-		bar.setTitle(ChatColor.AQUA + targetName + " " + ChatColor.GREEN + "[" + EnviName(target) + "]" + ChatColor.GOLD + " X: " + tx + " Y: " + " Z: " + tz);
+		bar.setTitle(ChatColor.AQUA + targetName + " " + ChatColor.GREEN + "[" + EnviName(target) + "]" + 
+		ChatColor.GOLD + " X: " + tx + " Y: " + ty + " Z: " + tz);
 		
 		
 	}
@@ -110,13 +112,17 @@ public class LocatePlayer implements CommandExecutor{
 	private static void sendAllPlayer(Player p, int px, int py, int pz) {
 		p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 5, 1);
 		
-		List<Player> onlinePlayers = (List<Player>) Bukkit.getServer().getOnlinePlayers();
-		List<Player> AllPlayer = onlinePlayers;
+			List<Player> onlinePlayers = (List<Player>) Bukkit.getServer().getOnlinePlayers();
+			List<Player> AllPlayer = onlinePlayers;
 		for(int i = 0; i < AllPlayer.size(); i++) {
 			String name = AllPlayer.get(i).getName();
 			Player target = Bukkit.getPlayer(name);
 			target.sendMessage(ChatColor.AQUA + p.getName() + ChatColor.GOLD + " [" + EnviName(p) + "] " + ChatColor.GREEN
 			+ "X: " + px + " Y: " + py + " Z: " + pz );	
 		}	
+	}
+	public static void removeAll() {
+		bar.removeAll();
+
 	}
 }

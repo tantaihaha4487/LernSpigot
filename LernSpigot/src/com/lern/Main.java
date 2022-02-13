@@ -7,6 +7,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import com.lern.Event.GItemFramehide;
 import com.lern.Event.ItemFrameHide;
 import com.lern.Event.onPlayerJoin;
+import com.lern.Event.serverReload;
 import com.lern.Items.ModeChange;
 import com.lern.Tab.LocatePlayerTab;
 import com.lern.Tab.WcTab;
@@ -36,6 +37,7 @@ public class Main extends JavaPlugin{
 		getServer().getPluginManager().registerEvents(new onPlayerJoin(this), this);
 		getServer().getPluginManager().registerEvents(new ModeChange(), this);
 		getServer().getPluginManager().registerEvents(new WorldConfig(), this);
+		getServer().getPluginManager().registerEvents(new serverReload(), this);
 		//getServer().getPluginManager().registerEvents(new DurabilityLowWarn(), this); //disable is bug
 		
 		/*===============================================[TCMD]===============================================*/
@@ -51,7 +53,10 @@ public class Main extends JavaPlugin{
 		new Coordinate().coordiante(this);
 		new NetherCoordinate().onLoop(this);
 		new ItemListener(this);
-		//new LocatePlayer();
-		//LocatePlayer.onRun(this); disable is bug
+		new LocatePlayer();
+		LocatePlayer.onRun(this);
+		/*===============================================[Logic]===============================================*/
+		LocatePlayer.nameTask.put("target", null);
+		
 	}
 }
