@@ -1,7 +1,7 @@
 # LernSpigot
 For Java MC Plugin ProJect!
 # Option
-item frame hide
+item frame hide \n
 welcome Text
 world config
 chaange mode stick
