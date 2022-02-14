@@ -1,6 +1,6 @@
 # LernSpigot
 For Java MC Plugin ProJect!
-# Option
+# Options
   * item frame hide
   * welcome Text
   * world config
@@ -10,6 +10,6 @@ For Java MC Plugin ProJect!
   * auto item in action bar
 
 
-# Command
+# Commands
   * locate player //find player
 
