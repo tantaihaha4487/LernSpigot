@@ -21,10 +21,6 @@ public class ReCommand implements CommandExecutor{
 			sender.sendMessage(ChatColor.GOLD + ChatColor.BOLD.toString() + "Reload Complete!!");
 			
 		}
-		if(cmd.getName().equals("t")) {
-			p.sendMessage("Test => " + p.getUniqueId());
-			
-		}
 		return true;
 	}
 

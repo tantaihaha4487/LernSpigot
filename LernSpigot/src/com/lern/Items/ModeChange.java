@@ -19,7 +19,16 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import com.lern.Main;
+
 public class ModeChange implements Listener, CommandExecutor{
+	private static Main plugin;
+	
+	public ModeChange(Main plugin) {
+		this.plugin = plugin;
+		
+	}
+	
 	//command
 		public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		        if(!(sender instanceof Player)) {
@@ -57,7 +66,7 @@ public class ModeChange implements Listener, CommandExecutor{
 	     ItemStack item = new ItemStack(Material.STICK);
          ItemMeta meta = item.getItemMeta();
  
-         meta.setDisplayName("Chage Mode Stick");
+         meta.setDisplayName("Change Mode Stick");
          List<String> lore = new ArrayList<>();
          lore.add("Right Cick For Change Game Mode");
          lore.add("Creative => Survival");

@@ -14,6 +14,7 @@ import com.lern.Tab.WcTab;
 import com.lern.commands.HidePlayer;
 import com.lern.commands.LocatePlayer;
 import com.lern.commands.ReCommand;
+import com.lern.commands.testCommand;
 import com.lern.gui.WorldConfig; 
 import com.lern.more.Coordinate;
 import com.lern.more.ItemListener;
@@ -35,7 +36,7 @@ public class Main extends JavaPlugin{
 		getServer().getPluginManager().registerEvents(new ItemFrameHide(), this);
 		getServer().getPluginManager().registerEvents(new GItemFramehide(), this);
 		getServer().getPluginManager().registerEvents(new onPlayerJoin(this), this);
-		getServer().getPluginManager().registerEvents(new ModeChange(), this);
+		getServer().getPluginManager().registerEvents(new ModeChange(this), this);
 		getServer().getPluginManager().registerEvents(new WorldConfig(), this);
 		getServer().getPluginManager().registerEvents(new serverReload(), this);
 		//getServer().getPluginManager().registerEvents(new DurabilityLowWarn(), this); //disable is bug
@@ -43,9 +44,9 @@ public class Main extends JavaPlugin{
 		/*===============================================[TCMD]===============================================*/
 		getCommand("wc").setExecutor(new WorldConfig());
 		getCommand("wc").setTabCompleter(new WcTab());
-		getCommand("modewand").setExecutor((CommandExecutor) new ModeChange());
+		getCommand("modewand").setExecutor((CommandExecutor) new ModeChange(this));
 		getCommand("r").setExecutor(new ReCommand());
-		getCommand("t").setExecutor(new ReCommand());
+		getCommand("t").setExecutor(new  testCommand());
 		getCommand("locateplayer").setExecutor(new LocatePlayer());
 		getCommand("locateplayer").setTabCompleter(new LocatePlayerTab());
 		//getCommand("hide").setExecutor(new HidePlayer(this)); bug
