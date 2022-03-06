@@ -32,8 +32,9 @@ import com.lern.Main;
 
 public class WorldConfig implements CommandExecutor, Listener{
 	public HashMap<String, Integer> CustomTimeTask = new HashMap<>();
-	public HashMap<String, Integer> addTask = new HashMap<>();
-	private Main Plugin;
+	public static HashMap<String, Integer> addTask = new HashMap<>();
+	private static Main Plugin;
+	public WorldConfig(Main plugin) {this.Plugin = plugin;}
 	/*===============================================[Custom Time Options]===============================================*/
 	//custom time options
 	@EventHandler
@@ -164,6 +165,7 @@ public class WorldConfig implements CommandExecutor, Listener{
 				p.closeInventory();
 				p.sendMessage(msg + ">>>Enter custom");
 				addTask.put("run", 1);
+				removeTask(p);
 				break;
 			case BARRIER:
 				p.openInventory(worldconfig());
@@ -401,5 +403,19 @@ public class WorldConfig implements CommandExecutor, Listener{
 			}
 		}
 		return true;
+	}
+	/*===============================================[Remove Task]===============================================*/
+	public static void removeTask(Player p) {
+		BukkitScheduler sh = Plugin.getServer().getScheduler();
+		sh.runTaskLater(Plugin, () -> {
+			if(addTask.get("run").equals(1)) {
+				addTask.replace("run", 0);
+				p.sendMessage(ChatColor.RED +"[Time Out]!");
+				Location loc = p.getLocation();
+				p.playSound(loc, Sound.ENTITY_ENDERMAN_TELEPORT, 2, 1);
+				
+			}
+		}, 15 * 20);
+		
 	}
 }

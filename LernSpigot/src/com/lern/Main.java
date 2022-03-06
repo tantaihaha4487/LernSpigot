@@ -37,15 +37,15 @@ public class Main extends JavaPlugin{
 		getServer().getPluginManager().registerEvents(new GItemFramehide(), this);
 		getServer().getPluginManager().registerEvents(new onPlayerJoin(this), this);
 		getServer().getPluginManager().registerEvents(new ModeChange(this), this);
-		getServer().getPluginManager().registerEvents(new WorldConfig(), this);
+		getServer().getPluginManager().registerEvents(new WorldConfig(this), this);
 		getServer().getPluginManager().registerEvents(new serverReload(), this);
 		//getServer().getPluginManager().registerEvents(new DurabilityLowWarn(), this); //disable is bug
 		
 		/*===============================================[TCMD]===============================================*/
-		getCommand("wc").setExecutor(new WorldConfig());
+		getCommand("wc").setExecutor(new WorldConfig(this));
 		getCommand("wc").setTabCompleter(new WcTab());
 		getCommand("modewand").setExecutor((CommandExecutor) new ModeChange(this));
-		getCommand("r").setExecutor(new ReCommand());
+		getCommand("r").setExecutor(new ReCommand(this));
 		getCommand("t").setExecutor(new  testCommand());
 		getCommand("locateplayer").setExecutor(new LocatePlayer());
 		getCommand("locateplayer").setTabCompleter(new LocatePlayerTab());
